@@ -1,5 +1,5 @@
 //
-//  GameWonLayer.swift
+//  GameOverlayer.swift
 //  StudyAdventure2
 //
 //  Created by Geovanni Oliveira de Jesus on 14/03/19.
@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import SpriteKit
+
+class GameOverLayer: SKNode {
+    
+    //MARK:- Properties
+    
+    //MARK:- Constructor
+    
+    //MARK:- Methods
+}

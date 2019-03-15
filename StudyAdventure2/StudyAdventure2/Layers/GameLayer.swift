@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import SpriteKit
+
+class GameLayer: SKNode {
+    
+    //MARK:- Properties
+    
+    //MARK:- Constructor
+    
+    //MARK:- Methods
+}

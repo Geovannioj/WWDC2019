@@ -11,4 +11,9 @@ import SpriteKit
 
 class IntroLayer: SKNode {
     
+    //MARK:- Properties
+    
+    //MARK:- Constructor
+    
+    //MARK:- Methods
 }
