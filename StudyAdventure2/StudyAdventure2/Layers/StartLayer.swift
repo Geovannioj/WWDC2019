@@ -85,6 +85,7 @@ class StartLayer: SKNode {
         tapToStart = SKSpriteNode(imageNamed: "StartBtn")
         tapToStart.position = CGPoint(x: size.width * 0.5, y: size.height * 0.16)
         tapToStart.zPosition = 10
+        tapToStart.name = "tapToStartBtn"
         addChild(tapToStart)
     }
     

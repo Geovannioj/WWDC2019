@@ -36,10 +36,22 @@ class StartScene: SKScene {
         addChild(startLayer!)
     }
     private func changeScene() {
-        
+        let introScene = IntroScene(size: size)
+        introScene.scaleMode = scaleMode
+        let showScene = SKTransition.fade(withDuration: 1.0)
+        self.removeAllChildren()
+        self.view?.presentScene(introScene, transition: showScene)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("scene touched")
+        for touch in touches {
+            let node = atPoint(touch.location(in: self))
+            
+            if node.name == "tapToStartBtn" {
+                changeScene()
+            } else {
+                //Nothing to do
+            }
+        }
     }
 }
