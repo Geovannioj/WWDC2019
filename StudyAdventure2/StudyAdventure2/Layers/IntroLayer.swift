@@ -17,15 +17,17 @@ class IntroLayer: SKNode {
     private var textBalloon: SKSpriteNode?
     private var yesBtn: SKSpriteNode?
     private var noBtn: SKSpriteNode?
+    private var nextBtn: SKSpriteNode?
+    private var textNode: SKLabelNode?
+    
+    var sentenceNumber: Int = 1
+    var noAnswer: Int = 0
+    var yesAnswer: Int = 0 
     
     //MARK:- Constructor
     init(size: CGSize) {
         super.init()
-        setBackgroundUP(size: size)
-        setCharacterUp(size: size)
-        setTheBalloonUp(size: size)
-        setYesButton(size: size)
-        setNoButton(size: size)
+        setLayer(size: size)
         
     }
     
@@ -35,6 +37,20 @@ class IntroLayer: SKNode {
     
     //MARK:- Methods
 
+    /**
+     Function to set all the elements in the scene
+     - parameters: - size: screen size
+     */
+    
+    private func setLayer(size: CGSize) {
+        setBackgroundUP(size: size)
+        setCharacterUp(size: size)
+        setTheBalloonUp(size: size)
+        setYesButton(size: size)
+        setNoButton(size: size)
+        setNextBtn(size: size)
+        setTextToTheBalloon()
+    }
     /**
      Function to set the background of the scene
      - parameter size: size of the screen
@@ -64,6 +80,7 @@ class IntroLayer: SKNode {
         textBalloon = SKSpriteNode(imageNamed: "TalkBaloon")
         textBalloon?.position = CGPoint(x: size.width * 0.4, y: size.height * 0.5)
         textBalloon?.zPosition = 1
+        textBalloon?.setScale(CGFloat(1.2))
         addChild(textBalloon!)
     }
     
@@ -73,8 +90,9 @@ class IntroLayer: SKNode {
      */
     private func setYesButton(size: CGSize) {
         yesBtn = SKSpriteNode(imageNamed: "YesBtn")
-        yesBtn?.position = CGPoint(x: size.width * 0.4, y: size.height * 0.15)
+        yesBtn?.position = CGPoint(x: size.width * 0.6, y: size.height * 0.15)
         yesBtn?.name = "yesBtn"
+        yesBtn?.isHidden = true
         addChild(yesBtn!)
     }
 
@@ -84,8 +102,277 @@ class IntroLayer: SKNode {
      */
     private func setNoButton(size: CGSize) {
         noBtn = SKSpriteNode(imageNamed: "NoBtn")
-        noBtn?.position = CGPoint(x: size.width * 0.6, y: size.height * 0.15)
+        noBtn?.position = CGPoint(x: size.width * 0.4, y: size.height * 0.15)
         noBtn?.name = "noBtn"
+        noBtn?.isHidden = true
         addChild(noBtn!)
+    }
+    
+    private func setNextBtn(size: CGSize) {
+        nextBtn = SKSpriteNode(imageNamed: "NextBtn")
+        nextBtn?.position = CGPoint(x: size.width * 0.8, y: size.height * 0.1)
+        nextBtn?.name = "nextBtn"
+        nextBtn?.isHidden = false
+        addChild(nextBtn!)
+    }
+    
+    /**
+     Function that sets the  balloon's text
+     */
+    func setTextToTheBalloon() {
+        textNode = SKLabelNode(fontNamed: "Chalkduster")
+        textNode?.text = "Hello there! Let's have a talk\ntap the button on the screen\n I need to tell you something!"
+        textNode?.horizontalAlignmentMode = .center
+        textNode?.fontColor = UIColor.black
+        textNode?.fontSize = 12.0
+        textNode?.zPosition = 10
+        textNode?.numberOfLines = 3
+        textBalloon!.addChild(textNode!)
+    }
+    
+    /**
+     Function to set the decision buttons visible
+     */
+    func setDecicionButtonsVisible() {
+        
+        let appearAction = SKAction.run {
+            self.noBtn?.isHidden = false
+            self.yesBtn?.isHidden = false
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 1.5)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    
+    /**
+     Function to set the decision buttons hidden
+     */
+    func setDecicionButtonsHiden() {
+        
+        let appearAction = SKAction.run {
+            self.noBtn?.isHidden = true
+            self.yesBtn?.isHidden = true
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 1.5)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    
+    /**
+     Function to set the next button visible
+     */
+    func setNextButtonVisible() {
+        
+        let appearAction = SKAction.run {
+            self.nextBtn?.isHidden = false
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    
+    /**
+     Function to set the next button visible
+     */
+    func setNextButtonHidden() {
+        
+        let appearAction = SKAction.run {
+            self.nextBtn?.isHidden = true
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    /**
+     Function responsable of changing the sentences of the talking.
+     */
+    func changeSentence() {
+        //actions
+        let changeTxtAction = SKAction.fadeOut(withDuration: 0.5)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.5)
+        
+        //actions to change the texts
+        let sentence2Block = SKAction.run {
+            self.textNode?.text = "Last year I got a lot of help \n and I became an iOS Developer!"
+        }
+        let sentence3Block = SKAction.run {
+            
+            self.textNode?.text = "Now I want to share my knowledge\n and help others like me."
+        }
+        let sentence4Block = SKAction.run {
+            
+            self.textNode?.text = "What do you think about?\nDo you like sharing what\n you know with others?"
+        }
+        //Yes- the person likes to share knowledge
+        let sentence5Block = SKAction.run {
+            
+            self.textNode?.text = "Nice! So do I. Knowledge sharing is a good\n action for you and for other people."
+        }
+        //Yes flow
+        let sentence7Block = SKAction.run {
+            
+            self.textNode?.text = "You learn more when teaching others and\n you help another pearson. "
+        }
+        let sentence8Block = SKAction.run {
+            
+            self.textNode?.text = "You can improve someone's life\n with knowledge and it must be spread\n as much as possible."
+        }
+
+        //NO - the person doesn't like to share knowledge
+        let sentence6Block = SKAction.run {
+            
+            self.textNode?.text = "That's a pitty. While teaching other\n people you learn much more and\n you help other people."
+        }
+        //NO flow
+        
+        let sentence10Block = SKAction.run {
+            
+            self.textNode?.text = "We must help others, it is\n a good action to be done."
+        }
+        let sentence11Block = SKAction.run {
+            
+            self.textNode?.text = "So what about share your\n knowledge teaching\n others?."
+        }
+        //MustBeGeneralSentence
+        let sentence9Block = SKAction.run {
+            
+            self.textNode?.text = "Let's teach other people iOS Development and change other people's lives to a beter way!"
+        }
+        let sentence12Block = SKAction.run {
+            self.textNode?.text = "Guide me through the crowd and\n get to the people who wants\n to learn how to build amazing apps."
+        }
+        let sentence13Block = SKAction.run {
+            self.textNode?.text = "One thing I didn't say... \nthis adventure\n will be in space!"
+        }
+        let sentence14Block = SKAction.run {
+            self.textNode?.text = "Let's go!"
+        }
+        
+        switch sentenceNumber {
+        case 2:
+            
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence2Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            
+            break
+            
+        case 3:
+            
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence3Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            
+            break
+            
+        case 4:
+            
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence4Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            
+            break
+            
+        case 5:
+            var sequence = SKAction()
+            //Answer is NO
+            if noAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                                  sentence6Block,
+                                                  fadeInAction])
+                //answer is YES
+            } else if yesAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                                  sentence5Block,
+                                                  fadeInAction])
+            }
+
+            self.textNode?.run(sequence)
+            break
+        case 6:
+            var sequence = SKAction()
+            //Answer is NO
+            if noAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                              sentence10Block,
+                                              fadeInAction])
+                //answer is YES
+            } else if yesAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                              sentence7Block,
+                                              fadeInAction])
+            }
+           
+            self.textNode?.run(sequence)
+            break
+            
+        case 7:
+            var sequence = SKAction()
+            //Answer is NO
+            if noAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                              sentence11Block,
+                                              fadeInAction])
+                //answer is YES
+            } else if yesAnswer == 1 {
+                sequence = SKAction.sequence([changeTxtAction,
+                                              sentence8Block,
+                                              fadeInAction])
+            }
+            self.textNode?.run(sequence)
+            break
+        case 8:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence9Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+        case 9:
+            //Stopped here
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence12Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+            
+        case 10:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence10Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+        case 11:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence11Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+        case 12:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence12Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+        case 13:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence13Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+        case 14:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence14Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
+            break
+        default: break
+            
+        }
     }
 }

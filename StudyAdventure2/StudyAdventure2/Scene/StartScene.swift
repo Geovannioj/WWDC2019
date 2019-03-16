@@ -38,7 +38,7 @@ class StartScene: SKScene {
     private func changeScene() {
         let introScene = IntroScene(size: size)
         introScene.scaleMode = scaleMode
-        let showScene = SKTransition.fade(withDuration: 1.0)
+        let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
         self.view?.presentScene(introScene, transition: showScene)
     }

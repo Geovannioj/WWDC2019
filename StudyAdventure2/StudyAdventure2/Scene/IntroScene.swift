@@ -13,6 +13,7 @@ class IntroScene: SKScene {
     
     //MARK:- Properties
     private var introLayer: IntroLayer?
+    private let decisionSentence = 4
     
     //MARK:- Constructor
     override init(size: CGSize) {
@@ -35,17 +36,37 @@ class IntroScene: SKScene {
     private func changeScene() {
         
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
             
             if node.name == "yesBtn" {
-                
+                introLayer?.yesAnswer += 1
+                introLayer?.sentenceNumber += 1
+                introLayer?.changeSentence()
+            
             } else if node.name == "noBtn" {
+                introLayer?.noAnswer += 1
+                introLayer?.sentenceNumber += 1
+                introLayer?.changeSentence()
                 
+            } else if node.name == "nextBtn" {
+                introLayer?.sentenceNumber += 1
+                introLayer?.changeSentence()
             } else {
                 //Nothing to do
             }
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if introLayer?.sentenceNumber == decisionSentence {
+            introLayer?.setNextButtonHidden()
+            introLayer?.setDecicionButtonsVisible()
+        } else if (introLayer?.sentenceNumber)! > decisionSentence {
+            introLayer?.setNextButtonVisible()
+            introLayer?.setDecicionButtonsHiden()
         }
     }
 }
