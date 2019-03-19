@@ -240,14 +240,14 @@ class IntroLayer: SKNode {
         //MustBeGeneralSentence
         let sentence9Block = SKAction.run {
             
-            self.textNode?.text = "Let's teach other people iOS Development and change other people's lives to a beter way!"
+            self.textNode?.text = "Let's teach other people\n iOS Development and change other\n people's lives to a beter way!"
         }
         let sentence12Block = SKAction.run {
             self.textNode?.text = "Guide me through the crowd and\n get to the people who wants\n to learn how to build amazing apps."
         }
-        let sentence13Block = SKAction.run {
-            self.textNode?.text = "One thing I didn't say... \nthis adventure\n will be in space!"
-        }
+//        let sentence13Block = SKAction.run {
+//            self.textNode?.text = "One thing I didn't say... \nthis adventure\n will be in space!"
+//        }
         let sentence14Block = SKAction.run {
             self.textNode?.text = "Let's go!"
         }
@@ -341,31 +341,31 @@ class IntroLayer: SKNode {
                                               fadeInAction])
             self.textNode?.run(sequence)
             break
-            
+//
+//        case 10:
+//            let sequence = SKAction.sequence([changeTxtAction,
+//                                              sentence10Block,
+//                                              fadeInAction])
+//            self.textNode?.run(sequence)
         case 10:
-            let sequence = SKAction.sequence([changeTxtAction,
-                                              sentence10Block,
-                                              fadeInAction])
-            self.textNode?.run(sequence)
-        case 11:
             let sequence = SKAction.sequence([changeTxtAction,
                                               sentence11Block,
                                               fadeInAction])
             self.textNode?.run(sequence)
             break
-        case 12:
-            let sequence = SKAction.sequence([changeTxtAction,
-                                              sentence12Block,
-                                              fadeInAction])
-            self.textNode?.run(sequence)
-            break
-        case 13:
-            let sequence = SKAction.sequence([changeTxtAction,
-                                              sentence13Block,
-                                              fadeInAction])
-            self.textNode?.run(sequence)
-            break
-        case 14:
+//        case 12:
+//            let sequence = SKAction.sequence([changeTxtAction,
+//                                              sentence12Block,
+//                                              fadeInAction])
+//            self.textNode?.run(sequence)
+//            break
+//        case 13:
+//            let sequence = SKAction.sequence([changeTxtAction,
+//                                              sentence13Block,
+//                                              fadeInAction])
+//            self.textNode?.run(sequence)
+//            break
+        case 11:
             let sequence = SKAction.sequence([changeTxtAction,
                                               sentence14Block,
                                               fadeInAction])

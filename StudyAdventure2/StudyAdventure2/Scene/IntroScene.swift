@@ -27,14 +27,25 @@ class IntroScene: SKScene {
     }
     
     //MARK:- Class Methods
-    
+
+    /**
+     Function to setup the intro layer to the intro scene
+     - parameters: size: size of the screen
+     */
     private func setupIntroLayer(size: CGSize) {
         introLayer = IntroLayer(size: size)
         addChild(introLayer!)
     }
     
+    /**
+     Function to change the Intro scene to the Game Scene
+     */
     private func changeScene() {
-        
+        let gameScene = GameScene(size: size)
+        gameScene.scaleMode = scaleMode
+        let showScene = SKTransition.fade(withDuration: 0.2)
+        self.removeAllChildren()
+        self.view?.presentScene(gameScene, transition: showScene)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -52,8 +63,12 @@ class IntroScene: SKScene {
                 introLayer?.changeSentence()
                 
             } else if node.name == "nextBtn" {
-                introLayer?.sentenceNumber += 1
-                introLayer?.changeSentence()
+                if (introLayer?.sentenceNumber)! < 12 {
+                    introLayer?.sentenceNumber += 1
+                    introLayer?.changeSentence()
+                } else {
+                    changeScene()
+                }
             } else {
                 //Nothing to do
             }
