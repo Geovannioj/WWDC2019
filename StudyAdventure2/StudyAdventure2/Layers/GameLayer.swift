@@ -13,8 +13,7 @@ import SpriteKit
 struct CollisionCategoryBitmask {
     static let Player: UInt32 = 0x00
     static let peopleWithOutHelp: UInt32 = 0x01
-    static let Platform: UInt32 = 0x02
-    static let peopleWithHelp: UInt32 = 0x03
+    static let peopleWithHelp: UInt32 = 0x02
 }
 
 class GameLayer: SKNode {
@@ -39,6 +38,7 @@ class GameLayer: SKNode {
         setGamePlayBackground(size: size)
         setUPPlayer(size: size)
         addCharacterTextures()
+        createPeopleWhoNeedsHelp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,13 +75,15 @@ class GameLayer: SKNode {
      Function that sets the character's physic
      - parameter character: character node to set the physics
      */
-    func setCharacterPhysics(character: SKSpriteNode) {
+    private func setCharacterPhysics(character: SKSpriteNode) {
         character.physicsBody = SKPhysicsBody(texture: character.texture!, size: character.size)
         character.physicsBody?.isDynamic = true
-        //        character.physicsBody?.categoryBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
-        //        character.physicsBody?.collisionBitMask = UInt32(EnumBitmaskCategory.book.rawValue)
-        //        character.physicsBody?.contactTestBitMask = UInt32(EnumBitmaskCategory.book.rawValue)
+        character.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Player
+        character.physicsBody?.collisionBitMask = CollisionCategoryBitmask.peopleWithOutHelp
+        character.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.peopleWithOutHelp
     }
+    
+    
     
     
     //MARK:- Game mecanic methods
@@ -92,7 +94,7 @@ class GameLayer: SKNode {
      - parameter sprite: node to be moved( the charcter)
      - parameter velocity: speed to move the node
      */
-    func moveCharacter(sprite: SKSpriteNode, velocity: CGPoint) {
+     func moveCharacter(sprite: SKSpriteNode, velocity: CGPoint) {
         
         let amountToMove = CGPoint(x: velocity.x * CGFloat(timeVariation),
                                    y: velocity.y * CGFloat(timeVariation))
@@ -109,7 +111,7 @@ class GameLayer: SKNode {
      - parameter characterSprite: character's node
      - parameter direction:  direction to rotate the character's node
      */
-    func rotateCharacter(characterSprite: SKSpriteNode, direction: CGPoint) {
+    private func rotateCharacter(characterSprite: SKSpriteNode, direction: CGPoint) {
         characterSprite.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x)))
     }
     
@@ -118,7 +120,7 @@ class GameLayer: SKNode {
      - parameter node: character's node
      - parameter location: location of the touch
      */
-    func moveTowardTap(node: SKSpriteNode, location: CGPoint) {
+     func moveTowardTap(node: SKSpriteNode, location: CGPoint) {
         animateTextureChange()
         let moveVector = CGPoint(x: (location.x - node.position.x),
                                  y: (location.y - node.position.y))
@@ -132,25 +134,80 @@ class GameLayer: SKNode {
                            y: direction.y * movePointsPerSecond)
     }
     
+    
+    /**
+     Function to create
+     */
+    private func createPeople(boy:Bool, withHelp: Bool) {
+        let person: SKSpriteNode!
+        
+        if boy {
+            person = SKSpriteNode(imageNamed: "Boy")
+        } else {
+            person = SKSpriteNode(imageNamed: "Girl")
+        }
+        
+        if withHelp {
+            setPersonPhysicsBody(person: person, personWithHelp: true)
+        } else {
+            setPersonPhysicsBody(person: person, personWithHelp: false)
+        }
+        
+        person.position = CGPoint(x: randomNumber(inRange: 0...Int(screenSize.width - safeArea)),
+                                  y: randomNumber(inRange: 0...Int(screenSize.height - safeArea)))
+        person.zPosition = 2
+        addChild(person)
+    }
+    
+    /**
+     Function to set the person's physicsBody
+     - parameter person: node of the person.
+     */
+    func setPersonPhysicsBody(person: SKSpriteNode, personWithHelp: Bool) {
+        
+        person.physicsBody = SKPhysicsBody(texture: person.texture!, size: person.size)
+        person.physicsBody?.isDynamic = true
+        if personWithHelp {
+            person.physicsBody?.categoryBitMask = CollisionCategoryBitmask.peopleWithHelp
+        } else {
+            person.physicsBody?.categoryBitMask = CollisionCategoryBitmask.peopleWithOutHelp
+        }
+        person.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Player
+        person.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.Player
+    }
+    
     /**
      Function that adds the character's texture to an array
      */
-    func addCharacterTextures() {
+   private func addCharacterTextures() {
         var textures:[SKTexture] = []
-        for i in 1...3 {
+        for i in 1...5 {
             textures.append(SKTexture(imageNamed: "CharacterBookWalk\(i)"))
         }
-        
-        textures.append(textures[1])
-        textures.append(textures[0])
+
         
         characterMove = SKAction.animate(with: textures, timePerFrame: 0.1)
     }
     
     /**
+     Function to create people who needs help into the game
+     */
+    
+    private func createPeopleWhoNeedsHelp() {
+        
+        for i in 1...8 {
+            if i % 2 == 0 {
+                createPeople(boy: true, withHelp: false)
+            } else {
+                createPeople(boy: false, withHelp: false)
+            }
+        }
+        
+    }
+    /**
      Function that gets the textures in the textures array and animate them
      */
-    func animateTextureChange() {
+    private func animateTextureChange() {
         
         if player!.action(forKey: "animation") == nil {
             player!.run(
@@ -167,13 +224,19 @@ class GameLayer: SKNode {
         player!.removeAction(forKey: "animation")
     }
     
+    public func randomNumber<T : SignedInteger>(inRange range: ClosedRange<T> = 1...6) -> T {
+        let length = Int64(range.upperBound - range.lowerBound + 1)
+        let value = Int64(arc4random()) % length + Int64(range.lowerBound)
+        return T(value)
+    }
+    
     /**
      Function that checks the bounds of the screen
      - parameter size: screen's size
      */
-    func checkBounds(size: CGSize) {
-        let bottomLeft = CGPoint.zero
-        let topRight = CGPoint(x: size.width, y: size.height * 0.65)
+   func checkBounds(size: CGSize) {
+        let bottomLeft = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
+        let topRight = CGPoint(x: size.width * 0.9, y: size.height * 0.5)
         
         if player!.position.x <= bottomLeft.x {
             
@@ -205,7 +268,7 @@ class GameLayer: SKNode {
      Function responsable for updating the
      - parameter currentTime: time to check the
      */
-    func updateTimeVariation(currentTime: TimeInterval) {
+   func updateTimeVariation(currentTime: TimeInterval) {
         if lastCallToUpdate > 0 {
             timeVariation = currentTime - lastCallToUpdate
         } else {

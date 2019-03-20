@@ -43,11 +43,11 @@ class StartScene: SKScene {
 //        self.view?.presentScene(introScene, transition: showScene)
 //    }
     private func changeScene() {
-        let carScene = CarScene(size: size)
-        carScene.scaleMode = scaleMode
+        let gameScene = GameScene(size: size)
+        gameScene.scaleMode = scaleMode
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
-        self.view?.presentScene(carScene, transition: showScene)
+        self.view?.presentScene(gameScene, transition: showScene)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

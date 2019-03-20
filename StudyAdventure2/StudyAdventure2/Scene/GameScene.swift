@@ -22,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         super.init(size:size)
         
         //physics addition
+        setUpGameScenePhysics()
         setupGameLayer(size: size)
         setupHudLayer(size: size)
     
@@ -103,10 +104,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         movimentationFunction()
         gameLayer!.checkBounds(size: size)
         hudLayer!.timeTxt!.text = String(GameManager.shared.countDown)
+        hudLayer!.scoreResult!.text = String(GameManager.shared.score)
         
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let characterAPersonB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Player && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithOutHelp
         
+        if characterAPersonB {
+            //score helped person
+            if ((contact.bodyB.node?.parent) != nil) {
+                GameManager.shared.score += 1
+                
+            }
+        }
+        
+        let personWithHelpAPersonWithOutHelpB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.peopleWithHelp && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithOutHelp
+        
+        if personWithHelpAPersonWithOutHelpB {
+            //turn person without help into helped.
+        }
     }
 }
