@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     
     //MARK:- properties
     private var gameLayer: GameLayer?
+    private var hudLayer: HUDLayer?
     
     //MARK:- constructor
     override init(size: CGSize) {
@@ -20,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         //physics addition
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.0)
         setupGameLayer(size: size)
+        setupHudLayer(size: size)
     
     }
     
@@ -36,6 +38,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     private func setupGameLayer(size: CGSize) {
         gameLayer = GameLayer(size: size)
         addChild(gameLayer!)
+    }
+    
+    /**
+     function the set up the hudLayer
+     - parameters: size: size of the screen to fit the layer
+     */
+    private func setupHudLayer(size: CGSize) {
+        hudLayer = HUDLayer(size: size)
+        addChild(hudLayer!)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

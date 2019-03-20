@@ -66,7 +66,7 @@ class IntroScene: SKScene {
                 if (introLayer?.sentenceNumber)! < 12 {
                     introLayer?.sentenceNumber += 1
                     introLayer?.changeSentence()
-                    print(introLayer?.sentenceNumber)
+                
                 } else {
                     changeScene()
                 }
