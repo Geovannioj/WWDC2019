@@ -12,8 +12,19 @@ import SpriteKit
 class HUDLayer: SKNode {
     
     //MARK:- Properties
+    private var timeBackground: SKSpriteNode?
+    private var scoreBackground: SKSpriteNode?
+    var scoreTxt: SKLabelNode?
+    var timeTxt: SKLabelNode?
     
     //MARK:- Constructor
+    init(size: CGSize) {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK:- Class Methods
 }
