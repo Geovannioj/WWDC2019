@@ -22,6 +22,9 @@
 		D4420179223B08B5000E70B3 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420178223B08B5000E70B3 /* GameLayer.swift */; };
 		D442017B223B08C4000E70B3 /* GameOverLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442017A223B08C4000E70B3 /* GameOverLayer.swift */; };
 		D442017F223B26F7000E70B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D442017E223B26F7000E70B3 /* Default-568h@2x.png */; };
+		D442018122419432000E70B3 /* HUDLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018022419432000E70B3 /* HUDLayer.swift */; };
+		D44201832241E374000E70B3 /* CarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201822241E374000E70B3 /* CarScene.swift */; };
+		D44201852241E3C6000E70B3 /* CarLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201842241E3C6000E70B3 /* CarLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		D4420178223B08B5000E70B3 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		D442017A223B08C4000E70B3 /* GameOverLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverLayer.swift; sourceTree = "<group>"; };
 		D442017E223B26F7000E70B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D442018022419432000E70B3 /* HUDLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDLayer.swift; sourceTree = "<group>"; };
+		D44201822241E374000E70B3 /* CarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarScene.swift; sourceTree = "<group>"; };
+		D44201842241E3C6000E70B3 /* CarLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +98,10 @@
 			children = (
 				D442016A223B0458000E70B3 /* StartLayer.swift */,
 				D4420170223B05C3000E70B3 /* IntroLayer.swift */,
+				D44201842241E3C6000E70B3 /* CarLayer.swift */,
 				D4420178223B08B5000E70B3 /* GameLayer.swift */,
 				D442017A223B08C4000E70B3 /* GameOverLayer.swift */,
+				D442018022419432000E70B3 /* HUDLayer.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 			children = (
 				D4420167223B02E4000E70B3 /* StartScene.swift */,
 				D442016E223B0552000E70B3 /* IntroScene.swift */,
+				D44201822241E374000E70B3 /* CarScene.swift */,
 				D4420172223B0697000E70B3 /* GameScene.swift */,
 				D4420174223B06D5000E70B3 /* GameOverScene.swift */,
 			);
@@ -209,13 +218,16 @@
 				D4420179223B08B5000E70B3 /* GameLayer.swift in Sources */,
 				D442016B223B0458000E70B3 /* StartLayer.swift in Sources */,
 				D4420154223AF4B9000E70B3 /* GameViewController.swift in Sources */,
+				D44201832241E374000E70B3 /* CarScene.swift in Sources */,
 				D4420173223B0697000E70B3 /* GameScene.swift in Sources */,
 				D442017B223B08C4000E70B3 /* GameOverLayer.swift in Sources */,
 				D442014C223AF4B9000E70B3 /* AppDelegate.swift in Sources */,
 				D4420168223B02E4000E70B3 /* StartScene.swift in Sources */,
+				D442018122419432000E70B3 /* HUDLayer.swift in Sources */,
 				D442016F223B0552000E70B3 /* IntroScene.swift in Sources */,
 				D442016D223B04AB000E70B3 /* GameManager.swift in Sources */,
 				D4420175223B06D5000E70B3 /* GameOverScene.swift in Sources */,
+				D44201852241E3C6000E70B3 /* CarLayer.swift in Sources */,
 				D4420171223B05C3000E70B3 /* IntroLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

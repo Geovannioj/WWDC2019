@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate  {
     
     //MARK:- properties
     
@@ -17,7 +17,8 @@ class GameScene: SKScene {
     //MARK:- constructor
     override init(size: CGSize) {
         super.init(size:size)
-        
+        //physics addition
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.0)
     
     }
     
@@ -26,4 +27,8 @@ class GameScene: SKScene {
     }
     
     //MARK:- Class Methods
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        <#code#>
+    }
 }
