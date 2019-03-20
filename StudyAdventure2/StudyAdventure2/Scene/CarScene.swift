@@ -31,6 +31,10 @@ class CarScene: SKScene {
 
     //MARK:- Class Method
     
+    /**
+     Function to change the current scene to the GameScene
+     
+     */
     private func changeScene(){
         let gameScene = GameScene(size: size)
         gameScene.scaleMode = scaleMode
@@ -41,7 +45,7 @@ class CarScene: SKScene {
     
     /**
      Function to set the car scene background up
-     - parameters: size: Size of the screen to position the car
+     - parameters: size: Size of the screen to position the background
      */
     private func setBackgroundUp(size: CGSize) {
         background = SKSpriteNode(imageNamed: "CarScene")
@@ -50,6 +54,10 @@ class CarScene: SKScene {
         addChild(background!)
     }
     
+    /**
+     Function to set the car sprite  up
+     - parameters: size: Size of the screen to position the car
+     */
     private func setCarUp(size: CGSize) {
         carNode = SKSpriteNode(imageNamed: "Car")
         carNode?.setScale(0.6)
@@ -58,6 +66,11 @@ class CarScene: SKScene {
         addChild(carNode!)
     }
     
+    /**
+     Function to set the car's action to move through the scene
+     - parameters: size: Size of the screen to position the car
+     carNode: node do execute the action of moving
+     */
     private func moveCar(size: CGSize, carNode: SKSpriteNode) {
         let moveAction = SKAction.moveTo(x: size.width, duration: 4.0)
         let changeSceneAction = SKAction.run {

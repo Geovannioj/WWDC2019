@@ -15,11 +15,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     private var gameLayer: GameLayer?
     private var hudLayer: HUDLayer?
     
+    var lastTouchLocation: CGPoint?
+    
     //MARK:- constructor
     override init(size: CGSize) {
         super.init(size:size)
+        
         //physics addition
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.0)
         setupGameLayer(size: size)
         setupHudLayer(size: size)
     
@@ -29,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Class Methods
+    //MARK:- setup Methods
     
     /**
     function the set up the gameLayer
@@ -49,10 +51,63 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         addChild(hudLayer!)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+    /**
+     Function that sets up the scene's physic
+     */
+    func setUpGameScenePhysics() {
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0  )
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
+
+    /**
+     Function that connects the function MoveTowardTap of the gameLayer with the gameScene
+     */
+    func sceneTouched(touchLocation: CGPoint) {
+        gameLayer?.moveTowardTap(node: (gameLayer?.player)!, location: touchLocation)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        sceneTouched(touchLocation: (touches.first?.location(in: self))!)
+        
+        if (touches.first?.location(in: self))! != lastTouchLocation {
+            lastTouchLocation = (touches.first?.location(in: self))!
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        
+        sceneTouched(touchLocation: (touches.first?.location(in: self))!)
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         
     }
+    
+    func movimentationFunction() {
+        if let lastTouchLocation = lastTouchLocation {
+            let diff = CGPoint(x:lastTouchLocation.x - gameLayer!.player!.position.x,
+                               y: lastTouchLocation.y - gameLayer!.player!.position.y)
+            let length = CGFloat(sqrt(pow(Double(diff.x), 2.0) + pow(Double(diff.y), 2.0)))
+            if length <= gameLayer!.movePointsPerSecond * CGFloat(gameLayer!.timeVariation) {
+                gameLayer!.player!.position = lastTouchLocation
+                gameLayer!.velocity = CGPoint.zero
+                gameLayer!.stopTextureChangesAnimation()
+            } else {
+                
+            }
+        }
+    }
+    override func update(_ currentTime: TimeInterval) {
+        gameLayer!.updateTimeVariation(currentTime: currentTime)
+        gameLayer!.moveCharacter(sprite: gameLayer!.player!,
+                                 velocity: gameLayer!.velocity)
+        
+        movimentationFunction()
+        gameLayer!.checkBounds(size: size)
+        
+    }
+    
+
 }

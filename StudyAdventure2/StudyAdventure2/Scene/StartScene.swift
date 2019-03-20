@@ -49,6 +49,7 @@ class StartScene: SKScene {
         self.removeAllChildren()
         self.view?.presentScene(carScene, transition: showScene)
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
