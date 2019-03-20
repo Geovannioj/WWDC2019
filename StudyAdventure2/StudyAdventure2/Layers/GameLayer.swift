@@ -45,7 +45,7 @@ class GameLayer: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Methods
+    //MARK:- Set up Methods
     
     /**
      Function to set the player into the scene
@@ -139,7 +139,6 @@ class GameLayer: SKNode {
         var textures:[SKTexture] = []
         for i in 1...3 {
             textures.append(SKTexture(imageNamed: "CharacterBookWalk\(i)"))
-            
         }
         
         textures.append(textures[1])

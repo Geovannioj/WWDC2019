@@ -26,6 +26,8 @@ class HUDLayer: SKNode {
         setUpScoreLabel(size: size)
         setUpTimeLabel(size: size)
         setUpScoreCount(size: size)
+        
+        startTimer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -99,6 +101,11 @@ class HUDLayer: SKNode {
         timeTxt?.zPosition = 10
         timeTxt?.position = CGPoint(x: size.width/2, y: size.height * 0.85)
         addChild(timeTxt!)
+    }
+    
+    func startTimer() {
+        let startTimerAction = GameManager.shared.TimerWithActions()
+        self.run(startTimerAction)
     }
     
 

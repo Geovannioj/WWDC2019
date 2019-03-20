@@ -81,10 +81,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         sceneTouched(touchLocation: (touches.first?.location(in: self))!)
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        
-    }
-    
     func movimentationFunction() {
         if let lastTouchLocation = lastTouchLocation {
             let diff = CGPoint(x:lastTouchLocation.x - gameLayer!.player!.position.x,
@@ -106,8 +102,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         
         movimentationFunction()
         gameLayer!.checkBounds(size: size)
+        hudLayer!.timeTxt!.text = String(GameManager.shared.countDown)
         
     }
     
-
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+    }
 }
