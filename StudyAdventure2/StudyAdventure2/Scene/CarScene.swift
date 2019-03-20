@@ -13,9 +13,16 @@ class CarScene: SKScene {
     
     //MARK:- properties
     
+    private var background: SKSpriteNode?
+    var carNode: SKSpriteNode?
+    
     //MARK:- Constructor
     override init(size: CGSize) {
-        super.init()
+        super.init(size: size)
+        setBackgroundUp(size: size)
+        setCarUp(size: size)
+        moveCar(size: size, carNode: carNode!)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,4 +30,40 @@ class CarScene: SKScene {
     }
 
     //MARK:- Class Method
+    
+    private func changeScene(){
+        let gameScene = GameScene(size: size)
+        gameScene.scaleMode = scaleMode
+        let showScene = SKTransition.fade(withDuration: 0.2)
+        self.removeAllChildren()
+        self.view?.presentScene(gameScene, transition: showScene)
+    }
+    
+    /**
+     Function to set the car scene background up
+     - parameters: size: Size of the screen to position the car
+     */
+    private func setBackgroundUp(size: CGSize) {
+        background = SKSpriteNode(imageNamed: "CarScene")
+        background?.position = CGPoint(x: size.width/2, y: size.height/2)
+        background?.zPosition = -10
+        addChild(background!)
+    }
+    
+    private func setCarUp(size: CGSize) {
+        carNode = SKSpriteNode(imageNamed: "Car")
+        carNode?.setScale(0.6)
+        carNode?.position = CGPoint(x: size.width * 0.1, y: size.height * 0.2)
+        carNode?.zPosition = 1
+        addChild(carNode!)
+    }
+    
+    private func moveCar(size: CGSize, carNode: SKSpriteNode) {
+        let moveAction = SKAction.moveTo(x: size.width, duration: 4.0)
+        let changeSceneAction = SKAction.run {
+            self.changeScene()
+        }
+        let sequence = SKAction.sequence([moveAction, changeSceneAction])
+        carNode.run(sequence)
+    }
 }

@@ -41,11 +41,11 @@ class IntroScene: SKScene {
      Function to change the Intro scene to the Game Scene
      */
     private func changeScene() {
-        let gameScene = GameScene(size: size)
-        gameScene.scaleMode = scaleMode
+        let carScene = CarScene(size: size)
+        carScene.scaleMode = scaleMode
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
-        self.view?.presentScene(gameScene, transition: showScene)
+        self.view?.presentScene(carScene, transition: showScene)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,6 +66,7 @@ class IntroScene: SKScene {
                 if (introLayer?.sentenceNumber)! < 12 {
                     introLayer?.sentenceNumber += 1
                     introLayer?.changeSentence()
+                    print(introLayer?.sentenceNumber)
                 } else {
                     changeScene()
                 }

@@ -29,6 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     //MARK:- Class Methods
     
     func didBegin(_ contact: SKPhysicsContact) {
-        <#code#>
+        
     }
 }
