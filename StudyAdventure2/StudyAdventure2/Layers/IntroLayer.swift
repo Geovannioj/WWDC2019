@@ -18,6 +18,7 @@ class IntroLayer: SKNode {
     private var yesBtn: SKSpriteNode?
     private var noBtn: SKSpriteNode?
     private var nextBtn: SKSpriteNode?
+    private var backBtn: SKSpriteNode?
     private var textNode: SKLabelNode?
     
     var sentenceNumber: Int = 1
@@ -49,6 +50,7 @@ class IntroLayer: SKNode {
         setYesButton(size: size)
         setNoButton(size: size)
         setNextBtn(size: size)
+        setBackBtn(size: size)
         setTextToTheBalloon()
     }
     /**
@@ -68,7 +70,7 @@ class IntroLayer: SKNode {
      */
     private func setCharacterUp(size: CGSize) {
         character = SKSpriteNode(imageNamed: "FrontCharacter")
-        character?.position = CGPoint(x: size.width * 0.2, y: size.height * 0.25)
+        character?.position = CGPoint(x: size.width * 0.2, y: size.height * 0.3)
         addChild(character!)
     }
     
@@ -78,7 +80,7 @@ class IntroLayer: SKNode {
      */
    private func setTheBalloonUp(size: CGSize) {
         textBalloon = SKSpriteNode(imageNamed: "TalkBaloon")
-        textBalloon?.position = CGPoint(x: size.width * 0.4, y: size.height * 0.5)
+        textBalloon?.position = CGPoint(x: size.width * 0.4, y: size.height * 0.6)
         textBalloon?.zPosition = 1
         textBalloon?.setScale(CGFloat(1.2))
         addChild(textBalloon!)
@@ -116,6 +118,14 @@ class IntroLayer: SKNode {
         addChild(nextBtn!)
     }
     
+    private func setBackBtn(size: CGSize) {
+        backBtn = SKSpriteNode(imageNamed: "BackBtn")
+        backBtn?.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1)
+        backBtn?.name = "backBtn"
+        backBtn?.isHidden = true
+        addChild(backBtn!)
+    }
+    
     /**
      Function that sets the  balloon's text
      */
@@ -139,7 +149,7 @@ class IntroLayer: SKNode {
             self.noBtn?.isHidden = false
             self.yesBtn?.isHidden = false
         }
-        let fadeInAction = SKAction.fadeIn(withDuration: 1.5)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
         let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
         
         self.run(sequenceAction)
@@ -168,7 +178,34 @@ class IntroLayer: SKNode {
         let appearAction = SKAction.run {
             self.nextBtn?.isHidden = false
         }
-        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    
+    /**
+     Func to set the backButton visible
+     */
+    func setBackButtonVisible() {
+        let appearAction = SKAction.run {
+            self.backBtn?.isHidden = false
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
+        let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
+        
+        self.run(sequenceAction)
+    }
+    
+    /**
+     Function to set the next button visible
+     */
+    func setBackButtonHidden() {
+        
+        let appearAction = SKAction.run {
+            self.backBtn?.isHidden = true
+        }
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
         let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
         
         self.run(sequenceAction)
@@ -182,7 +219,7 @@ class IntroLayer: SKNode {
         let appearAction = SKAction.run {
             self.nextBtn?.isHidden = true
         }
-        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
         let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
         
         self.run(sequenceAction)
@@ -192,10 +229,16 @@ class IntroLayer: SKNode {
      */
     func changeSentence() {
         //actions
-        let changeTxtAction = SKAction.fadeOut(withDuration: 0.5)
-        let fadeInAction = SKAction.fadeIn(withDuration: 0.5)
+        let changeTxtAction = SKAction.fadeOut(withDuration: 0.1)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.1)
         
         //actions to change the texts
+        
+        
+        let sentence1Block = SKAction.run {
+            self.textNode?.text = "Hello there! Let's have a talk\ntap the button on the screen\n I need to tell you something!"
+        }
+        
         let sentence2Block = SKAction.run {
             self.textNode?.text = "Last year I got a lot of help \n and I became an iOS Developer!"
         }
@@ -250,6 +293,12 @@ class IntroLayer: SKNode {
         }
         
         switch sentenceNumber {
+            
+        case 1:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence1Block,
+                                              fadeInAction])
+            self.textNode?.run(sequence)
         case 2:
             
             let sequence = SKAction.sequence([changeTxtAction,

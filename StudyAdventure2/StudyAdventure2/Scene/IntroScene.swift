@@ -51,7 +51,7 @@ class IntroScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
-            
+            print(introLayer?.sentenceNumber)
             if node.name == "yesBtn" {
                 introLayer?.yesAnswer += 1
                 introLayer?.sentenceNumber += 1
@@ -70,7 +70,16 @@ class IntroScene: SKScene {
                 } else {
                     changeScene()
                 }
-            } else {
+            } else if node.name == "backBtn" {
+                if (introLayer?.sentenceNumber)! > 1 {
+                    introLayer?.sentenceNumber -= 1
+                    introLayer?.changeSentence()
+                } else {
+                    //Nothing to do
+                }
+                
+            }
+            else {
                 //Nothing to do
             }
         }
@@ -80,9 +89,20 @@ class IntroScene: SKScene {
         if introLayer?.sentenceNumber == decisionSentence {
             introLayer?.setNextButtonHidden()
             introLayer?.setDecicionButtonsVisible()
-        } else if (introLayer?.sentenceNumber)! > decisionSentence {
+        
+        } else if (introLayer?.sentenceNumber)! > decisionSentence ||
+            (introLayer?.sentenceNumber)! < decisionSentence &&
+            (introLayer?.sentenceNumber)! > 1 {
+            
             introLayer?.setNextButtonVisible()
             introLayer?.setDecicionButtonsHiden()
+            introLayer?.setBackButtonVisible()
+            
+        } else if (introLayer?.sentenceNumber)! > 1 {
+            introLayer?.setBackButtonVisible()
+        
+        } else if (introLayer?.sentenceNumber)! == 1 {
+            introLayer?.setBackButtonHidden()
         }
     }
 }
