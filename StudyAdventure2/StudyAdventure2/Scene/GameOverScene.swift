@@ -12,11 +12,12 @@ import SpriteKit
 class GameOverScene: SKScene {
     
     //MARK:- Properties
-    
+    var gameOverLayer: GameOverLayer?
     
     //MARK:- Constructor
     override init(size: CGSize) {
         super.init(size:size)
+        setGameOverlayer(size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,14 +26,47 @@ class GameOverScene: SKScene {
     
     //MARK:- Class methods
     
-    private func restartGame() {
-        
+    /**
+     function to instantiate the gameover layer
+     */
+    
+    private func setGameOverlayer(size: CGSize) {
+        gameOverLayer = GameOverLayer(size: size)
+        addChild(gameOverLayer!)
+    }
+    /**
+     Function that does the transition to the second Screen( the talking screen)
+     */
+    private func goToStartScene() {
+        let startScene = StartScene(size:self.size)
+        startScene.scaleMode = scaleMode
+        let showScene = SKTransition.fade(withDuration: 0.2)
+        self.view?.presentScene(startScene, transition: showScene)
+        self.removeFromParent()
     }
     
-    private func backToStartScene() {
-        
+    /**
+     Function that does the transition to the GameScene
+     */
+    private func playAgainScene() {
+        let playScene = GameScene(size:self.size)
+        playScene.scaleMode = scaleMode
+        let showScene = SKTransition.fade(withDuration: 0.2)
+        self.view?.presentScene(playScene, transition: showScene)
+        self.removeFromParent()
     }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        for touch in touches {
+            let node = atPoint(touch.location(in: self))
+            
+            if node.name == "playAgain" {
+                playAgainScene()
+            } else if node.name == "restartEverything" {
+                goToStartScene()
+                
+            }
+        }
     }
 }

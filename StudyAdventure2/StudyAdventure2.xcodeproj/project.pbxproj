@@ -24,6 +24,7 @@
 		D442017F223B26F7000E70B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D442017E223B26F7000E70B3 /* Default-568h@2x.png */; };
 		D442018122419432000E70B3 /* HUDLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018022419432000E70B3 /* HUDLayer.swift */; };
 		D44201832241E374000E70B3 /* CarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201822241E374000E70B3 /* CarScene.swift */; };
+		D442018722431A59000E70B3 /* TeachOptionsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018622431A59000E70B3 /* TeachOptionsLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D442017E223B26F7000E70B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D442018022419432000E70B3 /* HUDLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDLayer.swift; sourceTree = "<group>"; };
 		D44201822241E374000E70B3 /* CarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarScene.swift; sourceTree = "<group>"; };
+		D442018622431A59000E70B3 /* TeachOptionsLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachOptionsLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				D4420178223B08B5000E70B3 /* GameLayer.swift */,
 				D442017A223B08C4000E70B3 /* GameOverLayer.swift */,
 				D442018022419432000E70B3 /* HUDLayer.swift */,
+				D442018622431A59000E70B3 /* TeachOptionsLayer.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				D442016F223B0552000E70B3 /* IntroScene.swift in Sources */,
 				D442016D223B04AB000E70B3 /* GameManager.swift in Sources */,
 				D4420175223B06D5000E70B3 /* GameOverScene.swift in Sources */,
+				D442018722431A59000E70B3 /* TeachOptionsLayer.swift in Sources */,
 				D4420171223B05C3000E70B3 /* IntroLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

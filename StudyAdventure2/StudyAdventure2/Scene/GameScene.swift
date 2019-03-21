@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     //MARK:- properties
     private var gameLayer: GameLayer?
     private var hudLayer: HUDLayer?
+    private var gameoverScene: GameOverScene?
     
     var lastTouchLocation: CGPoint?
     
@@ -21,10 +22,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     override init(size: CGSize) {
         super.init(size:size)
         
-        //physics addition
         setUpGameScenePhysics()
         setupGameLayer(size: size)
         setupHudLayer(size: size)
+        gameoverScene = GameOverScene(size: size)
+        
     
     }
     
@@ -96,6 +98,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             }
         }
     }
+    
+    /**
+     Function responsable to set gameover, removing the nodes
+     and restarting the countdown and game resulta
+     - parameter won: boolean tha indicates if the game was won or not
+     */
+    func setGameOverParameters(won: Bool) {
+        GameManager.shared.won = won
+        gameoverScene?.gameOverLayer?.chooseBackGround(won: GameManager.shared.won, size: size)
+        GameManager.shared.restartResults()
+        gameLayer?.player!.removeAllChildren()
+        self.removeFromParent()
+        let showScene = SKTransition.fade(withDuration: 0.2)
+        self.view?.presentScene(gameoverScene!, transition: showScene)
+    }
+    
+    /**
+     Function to check if it is gameover or not
+     - parameter countDown: the remain time
+     - parameter score: amount of books gotten
+     */
+    func checkGameOver(countDown: Int, score: Int) {
+        if countDown >= 0 && score >= 5   {
+            
+            let changeSceneBlock = SKAction.run({
+                self.setGameOverParameters(won: true)
+            })
+            
+            let sequence = SKAction.sequence([changeSceneBlock])
+            self.run(sequence)
+            
+        } else if countDown == 0 && score < 5 {
+            
+            setGameOverParameters(won: false)
+            
+        }
+    }
     override func update(_ currentTime: TimeInterval) {
         gameLayer!.updateTimeVariation(currentTime: currentTime)
         gameLayer!.moveCharacter(sprite: gameLayer!.player!,
@@ -103,6 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         
         movimentationFunction()
         gameLayer!.checkBounds(size: size)
+        checkGameOver(countDown: GameManager.shared.countDown, score: GameManager.shared.score)
         hudLayer!.timeTxt!.text = String(GameManager.shared.countDown)
         hudLayer!.scoreResult!.text = String(GameManager.shared.score)
         
@@ -115,14 +155,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             //score helped person
             if ((contact.bodyB.node?.parent) != nil) {
                 GameManager.shared.score += 1
+                let person  = SKSpriteNode(imageNamed: "GoldenPersonBook")
+                person.position = (contact.bodyB.node?.position)!
+                person.setScale(1.5)
+                addChild(person)
+                contact.bodyB.node?.removeFromParent()
                 
             }
-        }
-        
-        let personWithHelpAPersonWithOutHelpB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.peopleWithHelp && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithOutHelp
-        
-        if personWithHelpAPersonWithOutHelpB {
-            //turn person without help into helped.
         }
     }
 }

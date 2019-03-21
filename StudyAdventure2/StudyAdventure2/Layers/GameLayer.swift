@@ -22,14 +22,14 @@ class GameLayer: SKNode {
     var player: SKSpriteNode?
     private var clouds = [SKSpriteNode]()
     private var background: SKSpriteNode?
-    
+
     var lastCallToUpdate: TimeInterval = 0
     var timeVariation: TimeInterval = 0
     var movePointsPerSecond: CGFloat = 200.0
     var velocity = CGPoint.zero
     var characterMove: SKAction!
     var screenSize: CGSize!
-    let safeArea: CGFloat = 80.0
+    let safeArea: CGFloat = 100.0
     
     //MARK:- Constructor
     init(size:CGSize) {
@@ -54,8 +54,9 @@ class GameLayer: SKNode {
     private func setUPPlayer(size: CGSize) {
         player = SKSpriteNode(imageNamed: "CharacterBookWalk1")
         player?.position = CGPoint(x: size.width/2, y: size.height/2)
-        player?.zPosition = 3
-        player?.setScale(0.3)
+        player?.zPosition = 2
+        player?.setScale(0.2)
+        setCharacterPhysics(character: player!)
         addChild(player!)
     }
     
@@ -154,7 +155,7 @@ class GameLayer: SKNode {
         }
         
         person.position = CGPoint(x: randomNumber(inRange: 0...Int(screenSize.width - safeArea)),
-                                  y: randomNumber(inRange: 0...Int(screenSize.height - safeArea)))
+                                  y: randomNumber(inRange: 0...Int(screenSize.height * 0.65)))
         person.zPosition = 2
         addChild(person)
     }
@@ -276,5 +277,13 @@ class GameLayer: SKNode {
         }
         
         lastCallToUpdate = currentTime
+    }
+    
+    /**
+     Function to set the framework option to teach
+     - parameters: size: size of the screen to set the components in to the screen
+     */
+    func setTeachOptionToScreen(size: CGSize) {
+        
     }
 }
