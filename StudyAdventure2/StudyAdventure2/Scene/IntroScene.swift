@@ -14,6 +14,7 @@ class IntroScene: SKScene {
     //MARK:- Properties
     private var introLayer: IntroLayer?
     private let decisionSentence = 4
+    private let chanceSceneNumber = 11
     
     //MARK:- Constructor
     override init(size: CGSize) {
@@ -63,7 +64,7 @@ class IntroScene: SKScene {
                 introLayer?.changeSentence()
                 
             } else if node.name == "nextBtn" {
-                if (introLayer?.sentenceNumber)! < 12 {
+                if (introLayer?.sentenceNumber)! < chanceSceneNumber {
                     introLayer?.sentenceNumber += 1
                     introLayer?.changeSentence()
                 
@@ -103,6 +104,11 @@ class IntroScene: SKScene {
         
         } else if (introLayer?.sentenceNumber)! == 1 {
             introLayer?.setBackButtonHidden()
+            
+        } else if (introLayer?.sentenceNumber)! < decisionSentence {
+            introLayer?.noAnswer = 0
+            introLayer?.yesAnswer = 0
         }
+        
     }
 }

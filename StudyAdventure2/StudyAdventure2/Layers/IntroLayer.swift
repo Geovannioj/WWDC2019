@@ -164,7 +164,7 @@ class IntroLayer: SKNode {
             self.noBtn?.isHidden = true
             self.yesBtn?.isHidden = true
         }
-        let fadeInAction = SKAction.fadeIn(withDuration: 1.5)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
         let sequenceAction = SKAction.sequence([fadeInAction, appearAction])
         
         self.run(sequenceAction)
@@ -253,16 +253,16 @@ class IntroLayer: SKNode {
         //Yes- the person likes to share knowledge
         let sentence5Block = SKAction.run {
             
-            self.textNode?.text = "Nice! So do I. Knowledge sharing is a good\n action for you and for other people."
+            self.textNode?.text = "Nice! So do I. Knowledge sharing\n is a good action for you\n and for other people."
         }
         //Yes flow
         let sentence7Block = SKAction.run {
             
-            self.textNode?.text = "You learn more when teaching others and\n you help another pearson. "
+            self.textNode?.text = "You learn more when teaching\n others and you help\n another pearson. "
         }
         let sentence8Block = SKAction.run {
             
-            self.textNode?.text = "You can improve someone's life\n with knowledge and it must be spread\n as much as possible."
+            self.textNode?.text = "You can improve someone's life\n with knowledge and it must be\n spread as much as possible."
         }
 
         //NO - the person doesn't like to share knowledge
