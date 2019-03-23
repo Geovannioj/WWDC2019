@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     var limitPeopleSceneKitCreation: Bool = false
     var limitPeopleARKitCreation: Bool = false
     var limitPeopleCoreMLCreation: Bool = false
-    private let gameGoal = 30
+    private let gameGoal = 20
     
     //MARK:- constructor
     override init(size: CGSize) {

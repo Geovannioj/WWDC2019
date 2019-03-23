@@ -36,11 +36,11 @@ class CarScene: SKScene {
      
      */
     private func changeScene(){
-        let gameScene = GameScene(size: size)
-        gameScene.scaleMode = scaleMode
+        let preGameSceneScene = PreGameScene(size: size)
+        preGameSceneScene.scaleMode = scaleMode
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
-        self.view?.presentScene(gameScene, transition: showScene)
+        self.view?.presentScene(preGameSceneScene, transition: showScene)
     }
     
     /**

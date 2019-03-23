@@ -25,6 +25,7 @@
 		D442018122419432000E70B3 /* HUDLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018022419432000E70B3 /* HUDLayer.swift */; };
 		D44201832241E374000E70B3 /* CarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201822241E374000E70B3 /* CarScene.swift */; };
 		D442018722431A59000E70B3 /* TeachOptionsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018622431A59000E70B3 /* TeachOptionsLayer.swift */; };
+		D44201892245FDB0000E70B3 /* PreGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201882245FDB0000E70B3 /* PreGameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D442018022419432000E70B3 /* HUDLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDLayer.swift; sourceTree = "<group>"; };
 		D44201822241E374000E70B3 /* CarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarScene.swift; sourceTree = "<group>"; };
 		D442018622431A59000E70B3 /* TeachOptionsLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachOptionsLayer.swift; sourceTree = "<group>"; };
+		D44201882245FDB0000E70B3 /* PreGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				D4420167223B02E4000E70B3 /* StartScene.swift */,
 				D442016E223B0552000E70B3 /* IntroScene.swift */,
 				D44201822241E374000E70B3 /* CarScene.swift */,
+				D44201882245FDB0000E70B3 /* PreGameScene.swift */,
 				D4420172223B0697000E70B3 /* GameScene.swift */,
 				D4420174223B06D5000E70B3 /* GameOverScene.swift */,
 			);
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4420179223B08B5000E70B3 /* GameLayer.swift in Sources */,
+				D44201892245FDB0000E70B3 /* PreGameScene.swift in Sources */,
 				D442016B223B0458000E70B3 /* StartLayer.swift in Sources */,
 				D4420154223AF4B9000E70B3 /* GameViewController.swift in Sources */,
 				D44201832241E374000E70B3 /* CarScene.swift in Sources */,

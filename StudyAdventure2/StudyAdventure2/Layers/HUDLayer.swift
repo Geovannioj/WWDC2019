@@ -29,7 +29,6 @@ class HUDLayer: SKNode {
         super.init()
         setUpTimeBackground(size: size)
         setUpScoreBackground(size: size)
-//        setUpScoreLabel(size: size)
         setUpTimeLabel(size: size)
         setUpScoreCount(size: size)
         setUpScoreARKit(size: size)
@@ -187,7 +186,7 @@ class HUDLayer: SKNode {
         framework.zPosition = 20
         addChild(framework)
         
-        let waitAction = SKAction.wait(forDuration: 1.0)
+        let waitAction = SKAction.wait(forDuration: 2.5)
         let desappearAction = SKAction.run {
             framework.isHidden = true
             framework.removeFromParent()

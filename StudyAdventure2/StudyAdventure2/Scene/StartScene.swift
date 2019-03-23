@@ -35,20 +35,20 @@ class StartScene: SKScene {
         startLayer = StartLayer(size: size)
         addChild(startLayer!)
     }
-//    private func changeScene() {
-//        let introScene = IntroScene(size: size)
-//        introScene.scaleMode = scaleMode
-//        let showScene = SKTransition.fade(withDuration: 0.2)
-//        self.removeAllChildren()
-//        self.view?.presentScene(introScene, transition: showScene)
-//    }
     private func changeScene() {
-        let gameScene = GameScene(size: size)
-        gameScene.scaleMode = scaleMode
+        let introScene = IntroScene(size: size)
+        introScene.scaleMode = scaleMode
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
-        self.view?.presentScene(gameScene, transition: showScene)
+        self.view?.presentScene(introScene, transition: showScene)
     }
+//    private func changeScene() {
+//        let gameScene = GameScene(size: size)
+//        gameScene.scaleMode = scaleMode
+//        let showScene = SKTransition.fade(withDuration: 0.2)
+//        self.removeAllChildren()
+//        self.view?.presentScene(gameScene, transition: showScene)
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

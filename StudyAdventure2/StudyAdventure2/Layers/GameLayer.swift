@@ -71,7 +71,7 @@ class GameLayer: SKNode {
      - parameters: size: size of the screen to position the player into the scene
      */
     private func setUPEnemy(size: CGSize) {
-        enemy = SKSpriteNode(imageNamed: "FrontCharacter")
+        enemy = SKSpriteNode(imageNamed: "Enemy")
         enemy?.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
         enemy?.zPosition = 2
         enemy?.setScale(0.2)
