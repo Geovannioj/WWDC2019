@@ -62,11 +62,11 @@ class PreGameScene: SKScene {
     }
     
     private func goToGameScene() {
-        let gameScene = GameScene(size: size)
-        gameScene.scaleMode = scaleMode
+        let gameIntro = GameIntro(size: size)
+        gameIntro.scaleMode = scaleMode
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
-        self.view?.presentScene(gameScene, transition: showScene)
+        self.view?.presentScene(gameIntro, transition: showScene)
     }
     
     
