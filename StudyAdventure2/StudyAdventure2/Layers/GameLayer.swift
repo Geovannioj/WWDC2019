@@ -38,7 +38,7 @@ class GameLayer: SKNode {
         setGamePlayBackground(size: size)
         setUPPlayer(size: size)
         addCharacterTextures()
-        createPeopleWhoNeedsHelp()
+//        createPeopleWhoNeedsHelp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,9 +83,6 @@ class GameLayer: SKNode {
         character.physicsBody?.collisionBitMask = CollisionCategoryBitmask.peopleWithOutHelp
         character.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.peopleWithOutHelp
     }
-    
-    
-    
     
     //MARK:- Game mecanic methods
     
@@ -138,8 +135,9 @@ class GameLayer: SKNode {
     
     /**
      Function to create
+     - parameters: boy:
      */
-    private func createPeople(boy:Bool, withHelp: Bool) {
+    private func createPeople(boy:Bool, withHelp: Bool, name: String) {
         let person: SKSpriteNode!
         
         if boy {
@@ -150,13 +148,16 @@ class GameLayer: SKNode {
         
         if withHelp {
             setPersonPhysicsBody(person: person, personWithHelp: true)
+            
         } else {
             setPersonPhysicsBody(person: person, personWithHelp: false)
+            
         }
         
         person.position = CGPoint(x: randomNumber(inRange: 0...Int(screenSize.width - safeArea)),
                                   y: randomNumber(inRange: 0...Int(screenSize.height * 0.65)))
         person.zPosition = 2
+        person.name = name
         addChild(person)
     }
     
@@ -192,15 +193,16 @@ class GameLayer: SKNode {
     
     /**
      Function to create people who needs help into the game
+     - parameters: name: Name of the people sprite
      */
     
-    private func createPeopleWhoNeedsHelp() {
+    func createPeopleWhoNeedsHelp(name: String) {
         
         for i in 1...8 {
             if i % 2 == 0 {
-                createPeople(boy: true, withHelp: false)
+                createPeople(boy: true, withHelp: false, name: name)
             } else {
-                createPeople(boy: false, withHelp: false)
+                createPeople(boy: false, withHelp: false, name: name)
             }
         }
         
@@ -277,13 +279,5 @@ class GameLayer: SKNode {
         }
         
         lastCallToUpdate = currentTime
-    }
-    
-    /**
-     Function to set the framework option to teach
-     - parameters: size: size of the screen to set the components in to the screen
-     */
-    func setTeachOptionToScreen(size: CGSize) {
-        
     }
 }

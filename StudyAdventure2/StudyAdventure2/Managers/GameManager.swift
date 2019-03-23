@@ -14,6 +14,10 @@ class GameManager {
     //MARK:- Properties
     var score: Int = 0
     var countDown: Int = 60
+    var arKit: Int = 0
+    var spriteKit: Int = 0
+    var sceneKit: Int = 0
+    var coreMl: Int = 0
     var won: Bool = false
     
     static let shared = GameManager()
@@ -48,5 +52,9 @@ class GameManager {
         self.score = 0
         self.countDown = 60
         self.won = false
+        self.arKit = 0
+        self.sceneKit = 0
+        self.spriteKit = 0
+        self.coreMl = 0 
     }
 }

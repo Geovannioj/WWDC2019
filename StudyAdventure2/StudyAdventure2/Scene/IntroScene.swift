@@ -52,7 +52,6 @@ class IntroScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
-            print(introLayer?.sentenceNumber)
             if node.name == "yesBtn" {
                 introLayer?.yesAnswer += 1
                 introLayer?.sentenceNumber += 1

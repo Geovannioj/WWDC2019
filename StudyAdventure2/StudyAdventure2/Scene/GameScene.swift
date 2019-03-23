@@ -17,6 +17,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     private var gameoverScene: GameOverScene?
     
     var lastTouchLocation: CGPoint?
+    var limitPeopleSpriteKitCreation: Bool = false
+    var limitPeopleSceneKitCreation: Bool = false
+    var limitPeopleARKitCreation: Bool = false
+    var limitPeopleCoreMLCreation: Bool = false
+    private let gameGoal = 20
     
     //MARK:- constructor
     override init(size: CGSize) {
@@ -26,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         setupGameLayer(size: size)
         setupHudLayer(size: size)
         gameoverScene = GameOverScene(size: size)
-        
+    
     
     }
     
@@ -120,7 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
      - parameter score: amount of books gotten
      */
     func checkGameOver(countDown: Int, score: Int) {
-        if countDown >= 0 && score >= 5   {
+        if countDown >= 0 && score >= gameGoal   {
             
             let changeSceneBlock = SKAction.run({
                 self.setGameOverParameters(won: true)
@@ -145,13 +150,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         checkGameOver(countDown: GameManager.shared.countDown, score: GameManager.shared.score)
         hudLayer!.timeTxt!.text = String(GameManager.shared.countDown)
         hudLayer!.scoreResult!.text = String(GameManager.shared.score)
+        hudLayer!.scoreArKit!.text = String(GameManager.shared.arKit)
+        hudLayer!.scoreCoreML!.text = String(GameManager.shared.coreMl)
+        hudLayer!.scoreSceneKit!.text = String(GameManager.shared.sceneKit)
+        hudLayer!.scoreSpriteKit!.text = String(GameManager.shared.spriteKit)
+        
+        
+        if (GameManager.shared.countDown >= 45 && !limitPeopleSpriteKitCreation) {
+            gameLayer!.createPeopleWhoNeedsHelp(name: "SpriteKit")
+            limitPeopleSpriteKitCreation = true
+            
+        } else if (GameManager.shared.countDown < 45) &&
+            (GameManager.shared.countDown >= 30)  &&
+            !limitPeopleSceneKitCreation{
+            
+            gameLayer!.createPeopleWhoNeedsHelp(name: "SceneKit")
+            limitPeopleSceneKitCreation = true
+            
+        } else if ( GameManager.shared.countDown < 30) &&
+            (GameManager.shared.countDown >= 15 &&
+                !limitPeopleARKitCreation) {
+            
+            gameLayer!.createPeopleWhoNeedsHelp(name: "ARKit")
+            limitPeopleARKitCreation = true
+            
+        } else if (GameManager.shared.countDown < 15) &&
+            (GameManager.shared.countDown >= 0)  &&
+            !limitPeopleCoreMLCreation{
+            
+            gameLayer!.createPeopleWhoNeedsHelp(name: "CoreML")
+            limitPeopleCoreMLCreation = true
+        }
         
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         let characterAPersonB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Player && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithOutHelp
         
-        if characterAPersonB {
+        if characterAPersonB && GameManager.shared.countDown < 59 {
             //score helped person
             if ((contact.bodyB.node?.parent) != nil) {
                 GameManager.shared.score += 1
@@ -159,6 +195,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
                 person.position = (contact.bodyB.node?.position)!
                 person.setScale(1.5)
                 addChild(person)
+            
+                if contact.bodyB.node?.name == "SpriteKit" {
+                    GameManager.shared.spriteKit += 1
+                } else if contact.bodyB.node?.name == "SceneKit" {
+                    GameManager.shared.sceneKit += 1
+                } else if contact.bodyB.node?.name == "CoreML" {
+                    GameManager.shared.coreMl += 1
+                } else if contact.bodyB.node?.name == "ARKit" {
+                    GameManager.shared.arKit += 1
+                } else {
+                    //Nothing to do
+                }
+                
                 contact.bodyB.node?.removeFromParent()
                 
             }
