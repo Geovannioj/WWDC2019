@@ -15,6 +15,7 @@ class GameIntro: SKScene {
     private var background: SKSpriteNode?
     private var helpNode: SKSpriteNode?
     private var player: SKSpriteNode?
+    private var okBtn: SKSpriteNode?
     
     //MARK:- Constructor
     override init(size: CGSize) {
@@ -23,7 +24,7 @@ class GameIntro: SKScene {
         setHelpRequestUp(size: size)
         setUPPlayer(size: size)
         playActionsScene(size: size, carNode: player!)
-        
+        setPlayBtn(size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +43,13 @@ class GameIntro: SKScene {
         let showScene = SKTransition.fade(withDuration: 0.2)
         self.removeAllChildren()
         self.view?.presentScene(gameScene, transition: showScene)
+    }
+    
+    private func setPlayBtn(size: CGSize) {
+        okBtn = SKSpriteNode(imageNamed: "OKBtn")
+        okBtn?.position = CGPoint(x: size.width * 0.8, y: size.height * 0.1)
+        okBtn?.name = "OKBtn"
+        addChild(okBtn!)
     }
     
     /**
@@ -86,13 +94,18 @@ class GameIntro: SKScene {
      carNode: node do execute the action of moving
      */
     private func playActionsScene(size: CGSize, carNode: SKSpriteNode) {
-        let moveAction = SKAction.moveTo(x: size.width * 0.3, duration: 5.0)
-        let changeSceneAction = SKAction.run {
-            self.changeScene()
+        let moveAction = SKAction.moveTo(x: size.width * 0.3, duration: 2.0)
+        self.player!.run(moveAction)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let node = atPoint(touch.location(in: self))
+            
+            if node.name == "OKBtn" {
+                changeScene()
+            }
         }
-        
-        let sequence = SKAction.sequence([moveAction ,changeSceneAction])
-        self.player!.run(sequence)
     }
 }
 

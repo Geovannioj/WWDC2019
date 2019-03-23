@@ -27,6 +27,8 @@
 		D442018722431A59000E70B3 /* TeachOptionsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018622431A59000E70B3 /* TeachOptionsLayer.swift */; };
 		D44201892245FDB0000E70B3 /* PreGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44201882245FDB0000E70B3 /* PreGameScene.swift */; };
 		D442018B224603F9000E70B3 /* GameIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018A224603F9000E70B3 /* GameIntro.swift */; };
+		D442018F2246124E000E70B3 /* carSoundMP3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442018E2246124D000E70B3 /* carSoundMP3.mp3 */; };
+		D44201912246135E000E70B3 /* Tap2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D44201902246135E000E70B3 /* Tap2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		D442018622431A59000E70B3 /* TeachOptionsLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachOptionsLayer.swift; sourceTree = "<group>"; };
 		D44201882245FDB0000E70B3 /* PreGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameScene.swift; sourceTree = "<group>"; };
 		D442018A224603F9000E70B3 /* GameIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntro.swift; sourceTree = "<group>"; };
+		D442018E2246124D000E70B3 /* carSoundMP3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carSoundMP3.mp3; sourceTree = "<group>"; };
+		D44201902246135E000E70B3 /* Tap2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tap2.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 		D4420164223AF95E000E70B3 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D44201902246135E000E70B3 /* Tap2.mp3 */,
+				D442018E2246124D000E70B3 /* carSoundMP3.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -207,8 +213,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D442018F2246124E000E70B3 /* carSoundMP3.mp3 in Resources */,
 				D4420157223AF4B9000E70B3 /* Main.storyboard in Resources */,
 				D442017F223B26F7000E70B3 /* Default-568h@2x.png in Resources */,
+				D44201912246135E000E70B3 /* Tap2.mp3 in Resources */,
 				D4420159223AF4BC000E70B3 /* Assets.xcassets in Resources */,
 				D442015C223AF4BC000E70B3 /* LaunchScreen.storyboard in Resources */,
 			);

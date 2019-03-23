@@ -75,8 +75,10 @@ class PreGameScene: SKScene {
             let node = atPoint(touch.location(in: self))
             
             if node.name == "PlayBtn" {
+                GameManager.shared.playTapSound(node: self)
                 goToGameScene()
             } else if node.name == "Back" {
+                GameManager.shared.playTapSound(node: self)
                 goToIntroScene()
                 
             }

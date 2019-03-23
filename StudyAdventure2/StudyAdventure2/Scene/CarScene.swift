@@ -22,6 +22,7 @@ class CarScene: SKScene {
         setBackgroundUp(size: size)
         setCarUp(size: size)
         moveCar(size: size, carNode: carNode!)
+        playCarSound()
 
     }
     
@@ -64,6 +65,14 @@ class CarScene: SKScene {
         carNode?.position = CGPoint(x: size.width * 0.1, y: size.height * 0.2)
         carNode?.zPosition = 1
         addChild(carNode!)
+    }
+    
+    /**
+     Function responsable to play the car's launch sound
+     */
+    func playCarSound() {
+        let actionSound = SKAction.playSoundFileNamed("carSoundMP3.mp3", waitForCompletion: true)
+        carNode!.run(actionSound)
     }
     
     /**

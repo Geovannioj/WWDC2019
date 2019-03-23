@@ -53,16 +53,19 @@ class IntroScene: SKScene {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
             if node.name == "yesBtn" {
+                GameManager.shared.playTapSound(node: self)
                 introLayer?.yesAnswer += 1
                 introLayer?.sentenceNumber += 1
                 introLayer?.changeSentence()
             
             } else if node.name == "noBtn" {
+                GameManager.shared.playTapSound(node: self)
                 introLayer?.noAnswer += 1
                 introLayer?.sentenceNumber += 1
                 introLayer?.changeSentence()
                 
             } else if node.name == "nextBtn" {
+                GameManager.shared.playTapSound(node: self)
                 if (introLayer?.sentenceNumber)! < chanceSceneNumber {
                     introLayer?.sentenceNumber += 1
                     introLayer?.changeSentence()
@@ -71,6 +74,7 @@ class IntroScene: SKScene {
                     changeScene()
                 }
             } else if node.name == "backBtn" {
+                GameManager.shared.playTapSound(node: self)
                 if (introLayer?.sentenceNumber)! > 1 {
                     introLayer?.sentenceNumber -= 1
                     introLayer?.changeSentence()

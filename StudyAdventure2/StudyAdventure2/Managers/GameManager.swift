@@ -46,6 +46,14 @@ class GameManager {
     }
     
     /**
+     Function that plays the tap sound on all the scenes
+     - parameter node: node to run the action
+     */
+    func playTapSound(node: SKNode) {
+        let playSoundAction = SKAction.playSoundFileNamed("Tap2.mp3", waitForCompletion: true)
+        node.run(playSoundAction)
+    }
+    /**
      Function to restart the game
      */
     func restartResults() {

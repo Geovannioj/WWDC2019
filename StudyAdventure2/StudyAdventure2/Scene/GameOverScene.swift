@@ -62,8 +62,10 @@ class GameOverScene: SKScene {
             let node = atPoint(touch.location(in: self))
             
             if node.name == "playAgain" {
+                GameManager.shared.playTapSound(node: self)
                 playAgainScene()
             } else if node.name == "restartEverything" {
+                GameManager.shared.playTapSound(node: self)
                 goToStartScene()
                 
             }

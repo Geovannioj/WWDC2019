@@ -20,6 +20,7 @@ class StartScene: SKScene {
         super.init(size: size)
         
         self.setUpLayer(size: size)
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,7 +55,9 @@ class StartScene: SKScene {
         for touch in touches {
             let node = atPoint(touch.location(in: self))
             
+            GameManager.shared.playTapSound(node: self)
             if node.name == "tapToStartBtn" {
+                GameManager.shared.playTapSound(node: self)
                 changeScene()
             } else {
                 //Nothing to do
