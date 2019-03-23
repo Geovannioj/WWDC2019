@@ -175,5 +175,24 @@ class HUDLayer: SKNode {
         self.run(startTimerAction)
     }
     
-
+    /**
+    function to set up the famework that is going to be taught to other people
+     - parameters: name: name of the framework that is supposed to be taught
+     size: size of the screen to position the image
+     */
+    func showTeachFrameWork(name: String, size: CGSize) {
+       
+        let framework = SKSpriteNode(imageNamed: name)
+        framework.position = CGPoint(x: size.width/2 , y: size.height/2)
+        framework.zPosition = 20
+        addChild(framework)
+        
+        let waitAction = SKAction.wait(forDuration: 1.0)
+        let desappearAction = SKAction.run {
+            framework.isHidden = true
+            framework.removeFromParent()
+        }
+        let sequenceAction = SKAction.sequence([waitAction, desappearAction])
+        framework.run(sequenceAction)
+    }
 }

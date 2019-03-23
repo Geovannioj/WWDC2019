@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     var limitPeopleSceneKitCreation: Bool = false
     var limitPeopleARKitCreation: Bool = false
     var limitPeopleCoreMLCreation: Bool = false
-    private let gameGoal = 20
+    private let gameGoal = 40
     
     //MARK:- constructor
     override init(size: CGSize) {
@@ -134,7 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             let sequence = SKAction.sequence([changeSceneBlock])
             self.run(sequence)
             
-        } else if countDown == 0 && score < 5 {
+        } else if countDown == 0 && score < gameGoal {
             
             setGameOverParameters(won: false)
             
@@ -148,6 +148,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         movimentationFunction()
         gameLayer!.checkBounds(size: size)
         checkGameOver(countDown: GameManager.shared.countDown, score: GameManager.shared.score)
+        managePeopleSpawn()
+        updateHudScore()
+        
+        if GameManager.shared.countDown == 60 {
+            hudLayer!.showTeachFrameWork(name: "SpriteKit", size: size)
+        }
+        
+    }
+   
+    /**
+     Function responsible to update the hud result values
+     */
+    private func updateHudScore() {
         hudLayer!.timeTxt!.text = String(GameManager.shared.countDown)
         hudLayer!.scoreResult!.text = String(GameManager.shared.score)
         hudLayer!.scoreArKit!.text = String(GameManager.shared.arKit)
@@ -156,8 +169,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         hudLayer!.scoreSpriteKit!.text = String(GameManager.shared.spriteKit)
         
         
+    }
+    /**
+     Function to manage the spawn people's spawn in the screen
+     */
+    private func managePeopleSpawn() {
         if (GameManager.shared.countDown >= 45 && !limitPeopleSpriteKitCreation) {
             gameLayer!.createPeopleWhoNeedsHelp(name: "SpriteKit")
+            hudLayer!.showTeachFrameWork(name: "SpriteKit", size: size)
             limitPeopleSpriteKitCreation = true
             
         } else if (GameManager.shared.countDown < 45) &&
@@ -165,6 +184,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             !limitPeopleSceneKitCreation{
             
             gameLayer!.createPeopleWhoNeedsHelp(name: "SceneKit")
+            hudLayer!.showTeachFrameWork(name: "SceneKit", size: size)
             limitPeopleSceneKitCreation = true
             
         } else if ( GameManager.shared.countDown < 30) &&
@@ -172,6 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
                 !limitPeopleARKitCreation) {
             
             gameLayer!.createPeopleWhoNeedsHelp(name: "ARKit")
+            hudLayer!.showTeachFrameWork(name: "ARKit", size: size)
             limitPeopleARKitCreation = true
             
         } else if (GameManager.shared.countDown < 15) &&
@@ -179,9 +200,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             !limitPeopleCoreMLCreation{
             
             gameLayer!.createPeopleWhoNeedsHelp(name: "CoreML")
+            hudLayer!.showTeachFrameWork(name: "CoreML", size: size)
             limitPeopleCoreMLCreation = true
         }
-        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {

@@ -35,10 +35,11 @@ class GameLayer: SKNode {
     init(size:CGSize) {
         super.init()
         screenSize = size
+        setUpClouds(size: size)
         setGamePlayBackground(size: size)
         setUPPlayer(size: size)
         addCharacterTextures()
-//        createPeopleWhoNeedsHelp()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -279,5 +280,48 @@ class GameLayer: SKNode {
         }
         
         lastCallToUpdate = currentTime
+    }
+    
+    /**
+     Function that sets up the clounds in the firstScreen
+     - parameter size: size of the screen
+     */
+    func setUpClouds(size: CGSize) {
+        
+        var action: SKAction!
+        let amountOfClounds = 4
+        
+        for index in 0..<amountOfClounds {
+            let cloud = SKSpriteNode(imageNamed: "Cloud")
+            cloud.zPosition = -1
+            switch index {
+            case 0 :
+                cloud.position = CGPoint(x: size.width * 0.1, y: size.height * 0.76)
+                action = SKAction.move(to: CGPoint(x: size.width * 0.4, y: size.height * 0.76), duration: 100.0)
+                break
+            case 1:
+                cloud.position = CGPoint(x: size.width * 0.4, y: size.height * 0.76)
+                action = SKAction.move(to: CGPoint(x: size.width * 0.1, y: size.height * 0.76), duration: 100.0)
+                break
+                
+            case 2:
+                cloud.position = CGPoint(x: size.width * 0.6, y: size.height * 0.76)
+                action = SKAction.move(to: CGPoint(x: size.width * 0.8, y: size.height * 0.76), duration: 100.0)
+                break
+                
+            case 3:
+                cloud.position = CGPoint(x: size.width * 0.9, y: size.height * 0.76)
+                action = SKAction.move(to: CGPoint(x: size.width * 0.7, y: size.height * 0.76), duration: 100.0)
+                break
+                
+            default:
+                
+                break
+                
+            }
+            cloud.run(action)
+            clouds.append(cloud)
+            addChild(clouds[index])
+        }
     }
 }
