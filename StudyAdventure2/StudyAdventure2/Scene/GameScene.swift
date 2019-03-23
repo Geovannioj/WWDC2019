@@ -31,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         setupGameLayer(size: size)
         setupHudLayer(size: size)
         gameoverScene = GameOverScene(size: size)
-        GameManager.shared.startMusic(musicName: "GamePlay-Lovable_Clown_Sit_Com.mp3", node: self)
+        GameManager.shared.startMusic(musicName: "GamePly-Lovable_clown_sit_com_cut.mp3", node: self)
     
     
     }

@@ -21,7 +21,7 @@ class IntroScene: SKScene {
         super.init(size:size)
         
         setupIntroLayer(size: size)
-        GameManager.shared.startMusic(musicName: "BackgroundNew_Land.mp3", node: self)
+        GameManager.shared.startMusic(musicName: "BackgroundNew_land_cut.mp3", node: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,6 +94,8 @@ class IntroScene: SKScene {
         if introLayer?.sentenceNumber == decisionSentence {
             introLayer?.setNextButtonHidden()
             introLayer?.setDecicionButtonsVisible()
+            introLayer?.noAnswer = 0
+            introLayer?.yesAnswer = 0
         
         } else if (introLayer?.sentenceNumber)! > decisionSentence ||
             (introLayer?.sentenceNumber)! < decisionSentence &&
@@ -109,7 +111,7 @@ class IntroScene: SKScene {
         } else if (introLayer?.sentenceNumber)! == 1 {
             introLayer?.setBackButtonHidden()
             
-        } else if (introLayer?.sentenceNumber)! < decisionSentence {
+        } else if (introLayer?.sentenceNumber)! <= decisionSentence {
             introLayer?.noAnswer = 0
             introLayer?.yesAnswer = 0
         }

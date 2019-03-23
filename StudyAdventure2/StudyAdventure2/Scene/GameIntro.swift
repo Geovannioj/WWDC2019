@@ -25,7 +25,7 @@ class GameIntro: SKScene {
         setUPPlayer(size: size)
         playActionsScene(size: size, carNode: player!)
         setPlayBtn(size: size)
-        GameManager.shared.startMusic(musicName: "BackgroundNew_Land.mp3", node: self)
+        GameManager.shared.startMusic(musicName: "BackgroundNew_land_cut.mp3", node: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

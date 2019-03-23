@@ -38,14 +38,14 @@ class GameOverLayer: SKNode {
             backgroundImg = SKSpriteNode(imageNamed: "GameOverScene")
             backgroundImg?.position = CGPoint(x: size.width/2, y: size.height/2)
             backgroundImg?.zPosition = -10
-            GameManager.shared.startMusic(musicName: "WonBeach_Disco.mp3", node: self)
+            GameManager.shared.startMusic(musicName: "WonBeach_Disco_cut.mp3", node: self)
             addChild(backgroundImg!)
             
         } else {
             backgroundImg = SKSpriteNode(imageNamed: "GameOverLostScene")
             backgroundImg?.position = CGPoint(x: size.width/2, y: size.height/2)
             backgroundImg?.zPosition = -10
-            GameManager.shared.startMusic(musicName: "GameOverAurora_Currents.mp3", node: self)
+            GameManager.shared.startMusic(musicName: "GameOverAurora_currents_cut.mp3", node: self)
             addChild(backgroundImg!)
     
         }
