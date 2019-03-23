@@ -20,7 +20,7 @@ public class StartLayer: SKNode {
     private var background: SKSpriteNode!
     private var tapToStart: SKSpriteNode!
     private var title: SKSpriteNode!
-    private var secondaireTitle: SKSpriteNode!
+//    private var secondaireTitle: SKSpriteNode!
     private var character: SKSpriteNode!
     private var clouds = [SKSpriteNode]()
     private var books = [SKSpriteNode]()
@@ -94,15 +94,15 @@ public class StartLayer: SKNode {
      - parameters:- size: size of the screen
      */
     public  func setupTitle(size: CGSize) {
-        title = SKSpriteNode(imageNamed: "Title")
+        title = SKSpriteNode(imageNamed: "Title1")
         title.position = CGPoint(x: size.width / 2, y: size.height * 0.82)
         title.zPosition = 2
         addChild(title)
         
-        secondaireTitle = SKSpriteNode(imageNamed: "SecondaireTitle")
-        secondaireTitle.position = CGPoint(x: size.width/2, y: size.height * 0.65)
-        secondaireTitle.zPosition = 1
-        addChild(secondaireTitle)
+//        secondaireTitle = SKSpriteNode(imageNamed: "SecondaireTitle")
+//        secondaireTitle.position = CGPoint(x: size.width/2, y: size.height * 0.65)
+//        secondaireTitle.zPosition = 1
+//        addChild(secondaireTitle)
     }
     
     /**
