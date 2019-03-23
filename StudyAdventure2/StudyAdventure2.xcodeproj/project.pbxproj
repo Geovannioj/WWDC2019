@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4184A492246993000F91A2C /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4184A482246993000F91A2C /* GameLayer.swift */; };
 		D442014C223AF4B9000E70B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442014B223AF4B9000E70B3 /* AppDelegate.swift */; };
 		D4420154223AF4B9000E70B3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420153223AF4B9000E70B3 /* GameViewController.swift */; };
 		D4420157223AF4B9000E70B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4420155223AF4B9000E70B3 /* Main.storyboard */; };
@@ -19,7 +20,6 @@
 		D4420171223B05C3000E70B3 /* IntroLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420170223B05C3000E70B3 /* IntroLayer.swift */; };
 		D4420173223B0697000E70B3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420172223B0697000E70B3 /* GameScene.swift */; };
 		D4420175223B06D5000E70B3 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420174223B06D5000E70B3 /* GameOverScene.swift */; };
-		D4420179223B08B5000E70B3 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4420178223B08B5000E70B3 /* GameLayer.swift */; };
 		D442017B223B08C4000E70B3 /* GameOverLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442017A223B08C4000E70B3 /* GameOverLayer.swift */; };
 		D442017F223B26F7000E70B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D442017E223B26F7000E70B3 /* Default-568h@2x.png */; };
 		D442018122419432000E70B3 /* HUDLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018022419432000E70B3 /* HUDLayer.swift */; };
@@ -29,13 +29,13 @@
 		D442018B224603F9000E70B3 /* GameIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018A224603F9000E70B3 /* GameIntro.swift */; };
 		D442018F2246124E000E70B3 /* carSoundMP3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442018E2246124D000E70B3 /* carSoundMP3.mp3 */; };
 		D44201912246135E000E70B3 /* Tap2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D44201902246135E000E70B3 /* Tap2.mp3 */; };
-		D442019E22467E94000E70B3 /* GameOverAurora_currents_cut.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019A22467E93000E70B3 /* GameOverAurora_currents_cut.mp3 */; };
 		D442019F22467E94000E70B3 /* WonBeach_Disco_cut.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019B22467E93000E70B3 /* WonBeach_Disco_cut.mp3 */; };
 		D44201A022467E94000E70B3 /* GamePly-Lovable_clown_sit_com_cut.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019C22467E94000E70B3 /* GamePly-Lovable_clown_sit_com_cut.mp3 */; };
 		D44201A122467E94000E70B3 /* BackgroundNew_land_cut.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019D22467E94000E70B3 /* BackgroundNew_land_cut.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4184A482246993000F91A2C /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		D4420148223AF4B9000E70B3 /* StudyAdventure2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyAdventure2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442014B223AF4B9000E70B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4420153223AF4B9000E70B3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +50,6 @@
 		D4420170223B05C3000E70B3 /* IntroLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroLayer.swift; sourceTree = "<group>"; };
 		D4420172223B0697000E70B3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D4420174223B06D5000E70B3 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		D4420178223B08B5000E70B3 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		D442017A223B08C4000E70B3 /* GameOverLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverLayer.swift; sourceTree = "<group>"; };
 		D442017E223B26F7000E70B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D442018022419432000E70B3 /* HUDLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDLayer.swift; sourceTree = "<group>"; };
@@ -60,10 +59,10 @@
 		D442018A224603F9000E70B3 /* GameIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntro.swift; sourceTree = "<group>"; };
 		D442018E2246124D000E70B3 /* carSoundMP3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carSoundMP3.mp3; sourceTree = "<group>"; };
 		D44201902246135E000E70B3 /* Tap2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tap2.mp3; sourceTree = "<group>"; };
-		D442019A22467E93000E70B3 /* GameOverAurora_currents_cut.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOverAurora_currents_cut.mp3; sourceTree = "<group>"; };
 		D442019B22467E93000E70B3 /* WonBeach_Disco_cut.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WonBeach_Disco_cut.mp3; sourceTree = "<group>"; };
 		D442019C22467E94000E70B3 /* GamePly-Lovable_clown_sit_com_cut.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GamePly-Lovable_clown_sit_com_cut.mp3"; sourceTree = "<group>"; };
 		D442019D22467E94000E70B3 /* BackgroundNew_land_cut.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundNew_land_cut.mp3; sourceTree = "<group>"; };
+		D44201A622468C28000E70B3 /* GameOverAurora_currents_cut.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOverAurora_currents_cut.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +113,7 @@
 			children = (
 				D442016A223B0458000E70B3 /* StartLayer.swift */,
 				D4420170223B05C3000E70B3 /* IntroLayer.swift */,
-				D4420178223B08B5000E70B3 /* GameLayer.swift */,
+				D4184A482246993000F91A2C /* GameLayer.swift */,
 				D442017A223B08C4000E70B3 /* GameOverLayer.swift */,
 				D442018022419432000E70B3 /* HUDLayer.swift */,
 				D442018622431A59000E70B3 /* TeachOptionsLayer.swift */,
@@ -125,8 +124,8 @@
 		D4420164223AF95E000E70B3 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D44201A622468C28000E70B3 /* GameOverAurora_currents_cut.mp3 */,
 				D442019D22467E94000E70B3 /* BackgroundNew_land_cut.mp3 */,
-				D442019A22467E93000E70B3 /* GameOverAurora_currents_cut.mp3 */,
 				D442019C22467E94000E70B3 /* GamePly-Lovable_clown_sit_com_cut.mp3 */,
 				D442019B22467E93000E70B3 /* WonBeach_Disco_cut.mp3 */,
 				D44201902246135E000E70B3 /* Tap2.mp3 */,
@@ -232,7 +231,6 @@
 				D44201912246135E000E70B3 /* Tap2.mp3 in Resources */,
 				D44201A022467E94000E70B3 /* GamePly-Lovable_clown_sit_com_cut.mp3 in Resources */,
 				D4420159223AF4BC000E70B3 /* Assets.xcassets in Resources */,
-				D442019E22467E94000E70B3 /* GameOverAurora_currents_cut.mp3 in Resources */,
 				D442019F22467E94000E70B3 /* WonBeach_Disco_cut.mp3 in Resources */,
 				D442015C223AF4BC000E70B3 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -246,7 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D442018B224603F9000E70B3 /* GameIntro.swift in Sources */,
-				D4420179223B08B5000E70B3 /* GameLayer.swift in Sources */,
+				D4184A492246993000F91A2C /* GameLayer.swift in Sources */,
 				D44201892245FDB0000E70B3 /* PreGameScene.swift in Sources */,
 				D442016B223B0458000E70B3 /* StartLayer.swift in Sources */,
 				D4420154223AF4B9000E70B3 /* GameViewController.swift in Sources */,
