@@ -14,6 +14,7 @@ struct CollisionCategoryBitmask {
     static let Player: UInt32 = 0x00
     static let peopleWithOutHelp: UInt32 = 0x01
     static let peopleWithHelp: UInt32 = 0x02
+    static let enemy: UInt32 = 0x03
 }
 
 class GameLayer: SKNode {
@@ -29,7 +30,7 @@ class GameLayer: SKNode {
     var movePointsPerSecond: CGFloat = 200.0
     var velocity = CGPoint.zero
     var enemyVelocity = CGPoint.zero
-    var enemyMovePointsPerSecond: CGFloat = 100.0
+    var enemyMovePointsPerSecond: CGFloat = 50.0
     var characterMove: SKAction!
     var screenSize: CGSize!
     let safeArea: CGFloat = 100.0
@@ -74,7 +75,7 @@ class GameLayer: SKNode {
         enemy?.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
         enemy?.zPosition = 2
         enemy?.setScale(0.2)
-//        setCharacterPhysics(character: enemy!)
+        setEnemyPhysics(enemy: enemy!)
         addChild(enemy!)
     }
     
@@ -100,6 +101,18 @@ class GameLayer: SKNode {
         character.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Player
         character.physicsBody?.collisionBitMask = CollisionCategoryBitmask.peopleWithOutHelp
         character.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.peopleWithOutHelp
+    }
+
+    /**
+     Function that sets the character's physic
+     - parameter character: character node to set the physics
+     */
+    private func setEnemyPhysics(enemy: SKSpriteNode) {
+        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
+        enemy.physicsBody?.isDynamic = true
+        enemy.physicsBody?.categoryBitMask = CollisionCategoryBitmask.enemy
+        enemy.physicsBody?.collisionBitMask = CollisionCategoryBitmask.peopleWithHelp
+        enemy.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.peopleWithHelp
     }
     
     //MARK:- Game mecanic methods
@@ -208,11 +221,14 @@ class GameLayer: SKNode {
         person.physicsBody?.isDynamic = true
         if personWithHelp {
             person.physicsBody?.categoryBitMask = CollisionCategoryBitmask.peopleWithHelp
+            person.physicsBody?.collisionBitMask = CollisionCategoryBitmask.enemy
+            person.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.enemy
         } else {
             person.physicsBody?.categoryBitMask = CollisionCategoryBitmask.peopleWithOutHelp
+            person.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Player
+            person.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.Player
         }
-        person.physicsBody?.collisionBitMask = CollisionCategoryBitmask.Player
-        person.physicsBody?.contactTestBitMask = CollisionCategoryBitmask.Player
+        
     }
     
     /**

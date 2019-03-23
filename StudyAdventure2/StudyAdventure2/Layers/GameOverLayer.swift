@@ -41,7 +41,7 @@ class GameOverLayer: SKNode {
             addChild(backgroundImg!)
             
         } else {
-            backgroundImg = SKSpriteNode(imageNamed: "GameOverScene")
+            backgroundImg = SKSpriteNode(imageNamed: "GameOverLostScene")
             backgroundImg?.position = CGPoint(x: size.width/2, y: size.height/2)
             backgroundImg?.zPosition = -10
             addChild(backgroundImg!)

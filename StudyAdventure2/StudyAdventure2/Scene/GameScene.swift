@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
     var limitPeopleSceneKitCreation: Bool = false
     var limitPeopleARKitCreation: Bool = false
     var limitPeopleCoreMLCreation: Bool = false
-    private let gameGoal = 40
+    private let gameGoal = 30
     
     //MARK:- constructor
     override init(size: CGSize) {
@@ -135,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
      - parameter score: amount of books gotten
      */
     func checkGameOver(countDown: Int, score: Int) {
-        if countDown >= 0 && score >= gameGoal   {
+        if countDown == 0 && score >= gameGoal   {
             
             let changeSceneBlock = SKAction.run({
                 self.setGameOverParameters(won: true)
@@ -214,6 +214,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             limitPeopleCoreMLCreation = true
         }
     }
+   
+    private func respawnPerson(name: String, position: CGPoint, withHelp: Bool) {
+        let person: SKSpriteNode!
+        
+        if withHelp {
+            person  = SKSpriteNode(imageNamed: "GoldenPersonBook")
+        } else {
+            person = SKSpriteNode(imageNamed: "Girl")
+        }
+        
+        person.position = position
+        gameLayer?.setPersonPhysicsBody(person: person, personWithHelp: false)
+        person.name = name
+        addChild(person)
+    }
+    
+    /**
+     Function that recreates people who needs help and manage with one to create
+     */
+    private func managePeopleReSpawn(position: CGPoint, withHelp: Bool) {
+        if (GameManager.shared.countDown >= 45) {
+            respawnPerson(name: "SpriteKit", position: position, withHelp: withHelp)
+            
+        } else if (GameManager.shared.countDown < 45) &&
+            (GameManager.shared.countDown >= 30) {
+            respawnPerson(name: "SceneKit", position:  position, withHelp:  withHelp)
+            
+        } else if ( GameManager.shared.countDown < 30) &&
+            (GameManager.shared.countDown >= 15) {
+            
+            respawnPerson(name: "ARKit", position: position, withHelp:  withHelp)
+            
+        } else if (GameManager.shared.countDown < 15) &&
+            (GameManager.shared.countDown >= 0) {
+            respawnPerson(name: "CoreML", position:  position, withHelp:  withHelp)
+        }
+    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         let characterAPersonB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.Player && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithOutHelp
@@ -222,11 +259,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             //score helped person
             if ((contact.bodyB.node?.parent) != nil) {
                 GameManager.shared.score += 1
+                
                 let person  = SKSpriteNode(imageNamed: "GoldenPersonBook")
                 person.position = (contact.bodyB.node?.position)!
                 person.setScale(1.5)
+                gameLayer?.setPersonPhysicsBody(person: person, personWithHelp: true)
+                
+                if (GameManager.shared.countDown >= 45) {
+                    person.name = "SpriteKit"
+                    
+                } else if (GameManager.shared.countDown < 45) &&
+                    (GameManager.shared.countDown >= 30) {
+                    person.name = "SceneKit"
+                    
+                } else if ( GameManager.shared.countDown < 30) &&
+                    (GameManager.shared.countDown >= 15) {
+                    
+                    person.name = "ARKit"
+                    
+                } else if (GameManager.shared.countDown < 15) &&
+                    (GameManager.shared.countDown >= 0) {
+                    person.name = "CoreML"
+                }
                 addChild(person)
-            
+
                 if contact.bodyB.node?.name == "SpriteKit" {
                     GameManager.shared.spriteKit += 1
                 } else if contact.bodyB.node?.name == "SceneKit" {
@@ -238,9 +294,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
                 } else {
                     //Nothing to do
                 }
-                
+
                 contact.bodyB.node?.removeFromParent()
+
+            }
+        }
+        
+        let enemyAPersonHelpedB = contact.bodyA.categoryBitMask == CollisionCategoryBitmask.enemy && contact.bodyB.categoryBitMask == CollisionCategoryBitmask.peopleWithHelp
+        
+        if enemyAPersonHelpedB {
+            if ((contact.bodyB.node?.parent) != nil) {
                 
+                GameManager.shared.score -= 1
+                
+                if contact.bodyB.node?.name == "SpriteKit" {
+                    GameManager.shared.spriteKit -= 1
+                } else if contact.bodyB.node?.name == "SceneKit" {
+                    GameManager.shared.sceneKit -= 1
+                } else if contact.bodyB.node?.name == "CoreML" {
+                    GameManager.shared.coreMl -= 1
+                } else if contact.bodyB.node?.name == "ARKit" {
+                    GameManager.shared.arKit -= 1
+                } else {
+                    //Nothing to do
+                }
+                
+                managePeopleReSpawn(position: (contact.bodyB.node?.position)!, withHelp: false)
+                contact.bodyB.node?.removeFromParent()
             }
         }
     }
