@@ -20,6 +20,7 @@ class GameLayer: SKNode {
     
     //MARK:- Properties
     var player: SKSpriteNode?
+    var enemy: SKSpriteNode?
     private var clouds = [SKSpriteNode]()
     private var background: SKSpriteNode?
 
@@ -27,6 +28,8 @@ class GameLayer: SKNode {
     var timeVariation: TimeInterval = 0
     var movePointsPerSecond: CGFloat = 200.0
     var velocity = CGPoint.zero
+    var enemyVelocity = CGPoint.zero
+    var enemyMovePointsPerSecond: CGFloat = 100.0
     var characterMove: SKAction!
     var screenSize: CGSize!
     let safeArea: CGFloat = 100.0
@@ -39,6 +42,7 @@ class GameLayer: SKNode {
         setGamePlayBackground(size: size)
         setUPPlayer(size: size)
         addCharacterTextures()
+        setUPEnemy(size: size)
         
     }
     
@@ -59,6 +63,19 @@ class GameLayer: SKNode {
         player?.setScale(0.2)
         setCharacterPhysics(character: player!)
         addChild(player!)
+    }
+    
+    /**
+     Function to set the player into the scene
+     - parameters: size: size of the screen to position the player into the scene
+     */
+    private func setUPEnemy(size: CGSize) {
+        enemy = SKSpriteNode(imageNamed: "FrontCharacter")
+        enemy?.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
+        enemy?.zPosition = 2
+        enemy?.setScale(0.2)
+//        setCharacterPhysics(character: enemy!)
+        addChild(enemy!)
     }
     
     /**
@@ -93,7 +110,7 @@ class GameLayer: SKNode {
      - parameter sprite: node to be moved( the charcter)
      - parameter velocity: speed to move the node
      */
-     func moveCharacter(sprite: SKSpriteNode, velocity: CGPoint) {
+    func moveCharacter(sprite: SKSpriteNode, velocity: CGPoint) {
         
         let amountToMove = CGPoint(x: velocity.x * CGFloat(timeVariation),
                                    y: velocity.y * CGFloat(timeVariation))
@@ -102,8 +119,9 @@ class GameLayer: SKNode {
             x: sprite.position.x + amountToMove.x,
             y: sprite.position.y + amountToMove.y)
         
-        rotateCharacter(characterSprite: player!, direction: velocity)
+        rotateCharacter(characterSprite: sprite, direction: velocity)
     }
+    
     
     /**
      Function that rotates the character's node towards the touch location
@@ -133,6 +151,24 @@ class GameLayer: SKNode {
                            y: direction.y * movePointsPerSecond)
     }
     
+    /**
+     Function that moves the character towards the touch location
+     - parameter node: character's node
+     - parameter location: location of the touch
+     */
+    func moveEnemyTowardPlayer(node: SKSpriteNode, location: CGPoint) {
+
+        let moveVector = CGPoint(x: (location.x - node.position.x),
+                                 y: (location.y - node.position.y))
+        
+        let length = CGFloat(sqrt(pow(moveVector.x, 2) + pow(moveVector.y, 2)))
+        
+        let direction = CGPoint(x: (moveVector.x / length),
+                                y: (moveVector.y / length))
+        
+        enemyVelocity = CGPoint(x: direction.x * enemyMovePointsPerSecond,
+                           y: direction.y * enemyMovePointsPerSecond)
+    }
     
     /**
      Function to create

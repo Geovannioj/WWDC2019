@@ -73,6 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
      */
     func sceneTouched(touchLocation: CGPoint) {
         gameLayer?.moveTowardTap(node: (gameLayer?.player)!, location: touchLocation)
+        gameLayer?.moveEnemyTowardPlayer(node: (gameLayer?.enemy)!, location: (gameLayer?.player?.position)!)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,7 +104,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
             }
         }
     }
-    
+
+    func enemyMovimentationFunction() {
+        let diff = CGPoint(x:gameLayer!.player!.position.x - gameLayer!.enemy!.position.x,
+                           y:gameLayer!.player!.position.y - gameLayer!.enemy!.position.y)
+        let length = CGFloat(sqrt(pow(Double(diff.x), 2.0) + pow(Double(diff.y), 2.0)))
+        if length <= gameLayer!.enemyMovePointsPerSecond * CGFloat(gameLayer!.timeVariation) {
+            gameLayer!.enemy!.position = (gameLayer!.player?.position)!
+            gameLayer!.enemyVelocity = CGPoint.zero
+        }
+    }
     /**
      Function responsable to set gameover, removing the nodes
      and restarting the countdown and game resulta
@@ -144,16 +154,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         gameLayer!.updateTimeVariation(currentTime: currentTime)
         gameLayer!.moveCharacter(sprite: gameLayer!.player!,
                                  velocity: gameLayer!.velocity)
-        
         movimentationFunction()
+        
+        gameLayer!.moveCharacter(sprite: (gameLayer?.enemy)!
+            , velocity: (gameLayer?.enemyVelocity)!)
+        enemyMovimentationFunction()
+        
         gameLayer!.checkBounds(size: size)
         checkGameOver(countDown: GameManager.shared.countDown, score: GameManager.shared.score)
         managePeopleSpawn()
         updateHudScore()
-        
-        if GameManager.shared.countDown == 60 {
-            hudLayer!.showTeachFrameWork(name: "SpriteKit", size: size)
-        }
         
     }
    
