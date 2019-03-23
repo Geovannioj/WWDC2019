@@ -21,6 +21,7 @@ class PreGameScene: SKScene {
         setBackGroudn(size: size)
         setBackBtn(size: size)
         setPlayBtn(size: size)
+        GameManager.shared.startMusic(musicName: "BackgroundNew_Land.mp3", node: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

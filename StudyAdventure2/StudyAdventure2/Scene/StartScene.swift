@@ -20,6 +20,7 @@ class StartScene: SKScene {
         super.init(size: size)
         
         self.setUpLayer(size: size)
+        GameManager.shared.startMusic(musicName: "BackgroundNew_Land.mp3", node: self)
         
     }
     required init?(coder aDecoder: NSCoder) {

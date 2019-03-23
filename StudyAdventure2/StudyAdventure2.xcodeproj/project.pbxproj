@@ -29,6 +29,10 @@
 		D442018B224603F9000E70B3 /* GameIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442018A224603F9000E70B3 /* GameIntro.swift */; };
 		D442018F2246124E000E70B3 /* carSoundMP3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442018E2246124D000E70B3 /* carSoundMP3.mp3 */; };
 		D44201912246135E000E70B3 /* Tap2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D44201902246135E000E70B3 /* Tap2.mp3 */; };
+		D442019322461B11000E70B3 /* BackgroundNew_Land.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019222461B11000E70B3 /* BackgroundNew_Land.mp3 */; };
+		D442019522461B1B000E70B3 /* GameOverAurora_Currents.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019422461B1B000E70B3 /* GameOverAurora_Currents.mp3 */; };
+		D442019722461B29000E70B3 /* GamePlay-Lovable_Clown_Sit_Com.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019622461B29000E70B3 /* GamePlay-Lovable_Clown_Sit_Com.mp3 */; };
+		D442019922461C42000E70B3 /* WonBeach_Disco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442019822461C42000E70B3 /* WonBeach_Disco.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		D442018A224603F9000E70B3 /* GameIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntro.swift; sourceTree = "<group>"; };
 		D442018E2246124D000E70B3 /* carSoundMP3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carSoundMP3.mp3; sourceTree = "<group>"; };
 		D44201902246135E000E70B3 /* Tap2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tap2.mp3; sourceTree = "<group>"; };
+		D442019222461B11000E70B3 /* BackgroundNew_Land.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundNew_Land.mp3; sourceTree = "<group>"; };
+		D442019422461B1B000E70B3 /* GameOverAurora_Currents.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOverAurora_Currents.mp3; sourceTree = "<group>"; };
+		D442019622461B29000E70B3 /* GamePlay-Lovable_Clown_Sit_Com.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GamePlay-Lovable_Clown_Sit_Com.mp3"; sourceTree = "<group>"; };
+		D442019822461C42000E70B3 /* WonBeach_Disco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WonBeach_Disco.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,10 @@
 		D4420164223AF95E000E70B3 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D442019822461C42000E70B3 /* WonBeach_Disco.mp3 */,
+				D442019622461B29000E70B3 /* GamePlay-Lovable_Clown_Sit_Com.mp3 */,
+				D442019422461B1B000E70B3 /* GameOverAurora_Currents.mp3 */,
+				D442019222461B11000E70B3 /* BackgroundNew_Land.mp3 */,
 				D44201902246135E000E70B3 /* Tap2.mp3 */,
 				D442018E2246124D000E70B3 /* carSoundMP3.mp3 */,
 			);
@@ -217,7 +229,11 @@
 				D4420157223AF4B9000E70B3 /* Main.storyboard in Resources */,
 				D442017F223B26F7000E70B3 /* Default-568h@2x.png in Resources */,
 				D44201912246135E000E70B3 /* Tap2.mp3 in Resources */,
+				D442019322461B11000E70B3 /* BackgroundNew_Land.mp3 in Resources */,
 				D4420159223AF4BC000E70B3 /* Assets.xcassets in Resources */,
+				D442019522461B1B000E70B3 /* GameOverAurora_Currents.mp3 in Resources */,
+				D442019722461B29000E70B3 /* GamePlay-Lovable_Clown_Sit_Com.mp3 in Resources */,
+				D442019922461C42000E70B3 /* WonBeach_Disco.mp3 in Resources */,
 				D442015C223AF4BC000E70B3 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

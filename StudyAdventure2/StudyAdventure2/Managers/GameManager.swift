@@ -53,6 +53,17 @@ class GameManager {
         let playSoundAction = SKAction.playSoundFileNamed("Tap2.mp3", waitForCompletion: true)
         node.run(playSoundAction)
     }
+    
+    /**
+     Function that start the background music of a scene
+     - parameter musicName: name of the music to be played
+     - node: node that will play the music
+     */
+    func startMusic(musicName: String, node: SKNode) {
+        let musicAction =  SKAudioNode(fileNamed: musicName)
+        node.addChild(musicAction)
+    }
+    
     /**
      Function to restart the game
      */
